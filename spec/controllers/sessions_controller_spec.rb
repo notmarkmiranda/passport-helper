@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe SessionsController do
+describe SessionsController, "using omni auth" do
 
   it "creates or finds user from auth hash and redirects to home" do
     request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:facebook]

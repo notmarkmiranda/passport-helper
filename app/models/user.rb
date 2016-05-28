@@ -1,4 +1,9 @@
 class User < ActiveRecord::Base
+
+  has_secure_password validations: false
+  validates :email, presence: true, uniqueness: true
+  validates :provider, presence: true
+
   def self.from_omniauth(auth_hash)
     user = find_or_create_by(email: auth_hash['info']['email'], provider: auth_hash['provider'])
     user.name = auth_hash['info']['name']
@@ -9,4 +14,5 @@ class User < ActiveRecord::Base
     user.save!
     user
   end
+
 end

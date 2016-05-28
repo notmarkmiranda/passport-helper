@@ -2,6 +2,7 @@ require 'simplecov'
 SimpleCov.start("rails")
 require 'database_cleaner'
 require 'omniauth-twitter'
+require 'shoulda-matchers'
 require 'pry'
 require 'vcr'
 
@@ -25,9 +26,21 @@ OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new(auth_hash)
 OmniAuth.config.add_mock(auth_hash)
 
 RSpec.configure do |config|
+
   config.before(:suite) do
-    DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.strategy = :transaction
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
   end
 
   config.expect_with :rspec do |expectations|
@@ -38,9 +51,13 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
-  config.around(:each) do |example|
-    DatabaseCleaner.cleaning do
-      example.run
-    end
+end
+
+def create_users(num = 1)
+  num.times do
+    User.create(email: Faker::Internet.email,
+                provider: "email",
+                name: Faker::Name.name,
+                password: "password")
   end
 end

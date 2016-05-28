@@ -9,6 +9,7 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap-sass'
+gem 'bcrypt'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 
@@ -20,8 +21,10 @@ end
 
 group :test do
   gem 'vcr'
+  gem 'faker'
   gem 'webmock'
   gem 'rspec-rails'
+  gem 'shoulda-matchers', '~>3.1'
   gem 'database_cleaner'
   gem 'simplecov', require: false
 end
