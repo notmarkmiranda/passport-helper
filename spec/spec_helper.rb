@@ -11,6 +11,19 @@ VCR.configure do |c|
   c.configure_rspec_metadata!
 end
 
+info_hash = { email: "markmiranda51@gmail.com",
+name: "Mark Miranda",
+image: "http://thesocialmediamonthly.com/wp-content/uploads/2015/08/photo.png",
+urls: "http://www.facebook.com/markmiranda51"}
+info = OpenStruct.new(info_hash)
+ah = { provider: "facebook",
+       info: info }
+auth_hash = OpenStruct.new(ah)
+
+OmniAuth.config.test_mode = true
+OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new(auth_hash)
+OmniAuth.config.add_mock(auth_hash)
+
 RSpec.configure do |config|
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
