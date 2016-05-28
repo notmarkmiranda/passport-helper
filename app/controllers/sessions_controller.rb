@@ -6,10 +6,22 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       flash[:success] = "Welcome, #{@user.name}!"
     rescue
-      flash[:warning] = "There was an error trying to authenticate you."
+      flash[:warning] = "That didn't work, try again."
     end
     redirect_to root_path
     # render text: request.env['omniauth.auth'].to_json
+  end
+
+  def create_from_email
+    user = User.find_by(email: params[:session][:email], provider: "email")
+    if user && user.authenticate(params[:session][:password])
+      session[:user_id] = user.id
+      flash[:success] = "Welcome #{user.name}!"
+      redirect_to user_dashboard_path
+    else
+      flash.now[:warning] = "That didn't work, try again."
+      render :new
+    end
   end
 
   def destroy
