@@ -3,6 +3,8 @@ SimpleCov.start("rails")
 require 'database_cleaner'
 require 'omniauth-twitter'
 require 'shoulda-matchers'
+require 'capybara'
+require 'launchy'
 require 'pry'
 require 'vcr'
 
@@ -12,18 +14,24 @@ VCR.configure do |c|
   c.configure_rspec_metadata!
 end
 
-info_hash = { email: "markmiranda51@gmail.com",
-name: "Mark Miranda",
-image: "http://thesocialmediamonthly.com/wp-content/uploads/2015/08/photo.png",
-urls: "http://www.facebook.com/markmiranda51"}
-info = OpenStruct.new(info_hash)
-ah = { provider: "facebook",
-       info: info }
-auth_hash = OpenStruct.new(ah)
+def set_omniauth
+  info_hash = { email: "markmiranda51@gmail.com",
+  name: "Mark Miranda",
+  image: "http://thesocialmediamonthly.com/wp-content/uploads/2015/08/photo.png",
+  urls: "http://www.facebook.com/markmiranda51"}
+  info = OpenStruct.new(info_hash)
+  ah = { provider: "facebook",
+         info: info }
+  auth_hash = OpenStruct.new(ah)
 
-OmniAuth.config.test_mode = true
-OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new(auth_hash)
-OmniAuth.config.add_mock(auth_hash)
+  OmniAuth.config.test_mode = true
+  OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new(auth_hash)
+  request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:facebook]
+end
+
+def set_invalid_omniauth
+  
+end
 
 RSpec.configure do |config|
 

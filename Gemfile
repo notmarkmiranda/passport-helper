@@ -22,10 +22,12 @@ end
 group :test do
   gem 'vcr'
   gem 'faker'
+  gem 'launchy'
   gem 'webmock'
+  gem 'capybara'
   gem 'rspec-rails'
-  gem 'shoulda-matchers', '~>3.1'
   gem 'database_cleaner'
+  gem 'shoulda-matchers', '~>3.1'
   gem 'simplecov', require: false
 end
 
