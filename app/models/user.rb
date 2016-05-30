@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 
-  has_secure_password validations: false
-  validates :password, length: { minimum: 8 }, allow_nil: false
+  has_secure_password
+  validates :password, length: { minimum: 8 }, on: :create
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, uniqueness: true
@@ -23,4 +23,5 @@ class User < ActiveRecord::Base
   def finish_registration(incoming_params)
     update(incoming_params)
   end
+
 end

@@ -1,6 +1,6 @@
 <h1>We're almost done!</h1>
 
-<%= form_for @user, html: { method: :patch } do |f| %>
+<%= form_for @user do |f| %>
   <%= f.label :name, "Name" %>
   <%= f.text_field :name %>
   <%= f.label :image_url, "Profile Photo" %>

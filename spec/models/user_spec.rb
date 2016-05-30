@@ -38,7 +38,7 @@ describe User, "using email" do
 	it "creates a user from email" do
 		expect{ create_users(1) }.to change{ User.all.size }.from(0).to(1)
 	end
-	
+
 	it "returns an error if email already exists" do
 		create_users(1)
 		user = User.first
@@ -47,6 +47,17 @@ describe User, "using email" do
 									name: user.name,
 									password: user.password)).to_not be_persisted
 
+	end
+
+	it "user#finish_registration updates user attributes" do
+		user = User.create(email: "markmiranda51@gmail.com", password: "password", provider: "email")
+		expect(user.image_url).to be_nil
+		expect(user.name).to be_nil
+		updated_params = { image_url: "https://case.edu/medicine/admissions/media/school-of-medicine/admissions/classprofile.png",
+		                   name: "Mark Miranda" }
+		user.finish_registration(updated_params)
+		expect(user.image_url).to_not be_nil
+		expect(user.name).to_not be_nil
 	end
 
 end
