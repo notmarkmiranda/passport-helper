@@ -1,7 +1,9 @@
 class User < ActiveRecord::Base
 
   has_secure_password validations: false
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, uniqueness: true
+  validates :email, format: { with: VALID_EMAIL_REGEX }
   validates :provider, presence: true
 
   def self.from_omniauth(auth_hash)
@@ -15,4 +17,7 @@ class User < ActiveRecord::Base
     user
   end
 
+  def finish_registration(incoming_params)
+    update(incoming_params)
+  end
 end

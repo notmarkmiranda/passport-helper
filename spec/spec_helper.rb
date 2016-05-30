@@ -14,23 +14,25 @@ VCR.configure do |c|
   c.configure_rspec_metadata!
 end
 
-def set_omniauth
-  info_hash = { email: "markmiranda51@gmail.com",
-  name: "Mark Miranda",
-  image: "http://thesocialmediamonthly.com/wp-content/uploads/2015/08/photo.png",
-  urls: "http://www.facebook.com/markmiranda51"}
-  info = OpenStruct.new(info_hash)
-  ah = { provider: "facebook",
-         info: info }
-  auth_hash = OpenStruct.new(ah)
+info_hash = { email: "markmiranda51@gmail.com",
+name: "Mark Miranda",
+image: "http://thesocialmediamonthly.com/wp-content/uploads/2015/08/photo.png",
+urls: "http://www.facebook.com/markmiranda51"}
+info = OpenStruct.new(info_hash)
+ah = { provider: "facebook",
+       info: info }
+auth_hash = OpenStruct.new(ah)
 
-  OmniAuth.config.test_mode = true
-  OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new(auth_hash)
-  request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:facebook]
-end
+OmniAuth.config.test_mode = true
+OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new(auth_hash)
 
-def set_invalid_omniauth
-  
+def mock_auth_hash
+  OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new({
+    "provider" => "facebook",
+    "info" => {"name" => "Mark Miranda",
+               "image" => "http://thesocialmediamonthly.com/wp-content/uploads/2015/08/photo.png",
+           "urls" => "http://www.facebook.com/markmiranda51"}
+  })
 end
 
 RSpec.configure do |config|

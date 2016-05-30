@@ -27,7 +27,7 @@ group :test do
   gem 'capybara'
   gem 'rspec-rails'
   gem 'database_cleaner'
-  gem 'shoulda-matchers', '~>3.1'
+    gem 'shoulda-matchers', '~>3.1'
   gem 'simplecov', require: false
 end
 

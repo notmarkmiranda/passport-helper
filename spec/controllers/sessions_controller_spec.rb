@@ -1,10 +1,11 @@
 require 'rails_helper'
 
 describe SessionsController, "using omni auth" do
+
   it "creates or finds user from auth hash and redirects to home" do
-    set_omniauth
+    request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:facebook]
     post :create, provider: :facebook
-    expect(response).to redirect_to root_path
+    expect(response).to redirect_to user_dashboard_path
     expect(session[:user_id]).to_not be_nil
   end
 
@@ -17,7 +18,7 @@ describe SessionsController, "using omni auth" do
   describe "sessions#destroy" do
 
     before do
-      set_omniauth
+      request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:facebook]
       post :create, provider: :facebook
     end
 

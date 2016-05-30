@@ -1,14 +1,19 @@
 class SessionsController < ApplicationController
 
+  def new
+    @user = User.new
+  end
+
   def create
     begin
       @user = User.from_omniauth(request.env['omniauth.auth'])
       session[:user_id] = @user.id
       flash[:success] = "Welcome, #{@user.name}!"
+      redirect_to user_dashboard_path
     rescue
       flash[:warning] = "That didn't work, try again."
+      redirect_to root_path
     end
-    redirect_to root_path
     # render text: request.env['omniauth.auth'].to_json
   end
 

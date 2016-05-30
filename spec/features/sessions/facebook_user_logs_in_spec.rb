@@ -1,10 +1,14 @@
-require 'rails_helper'
+require "rails_helper"
 
 feature "facebook user logs in" do
 
-  scenario "with valid credentials" do
-    # request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:facebook]
-    visit '/'
+  xscenario "with valid credentials" do
+    # visit "/"
+    # click_link "Login"
+    # find('img.facebook-login').click
+    expect(current_path).to eq user_dashboard_path
+    expect(page).to have_content "Name: Mark Miranda"
+    expect(flash[:success]).to be_present
     # save_and_open_page
   end
 
