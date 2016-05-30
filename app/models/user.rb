@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
 
   has_secure_password validations: false
+  validates :password, length: { minimum: 8 }, allow_nil: false
+
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, uniqueness: true
   validates :email, format: { with: VALID_EMAIL_REGEX }
@@ -13,6 +15,7 @@ class User < ActiveRecord::Base
     user.image_url = auth_hash['info']['image']
     user.url = auth_hash['info']['urls'][user.provider.capitalize]
     user.uid = auth_hash['uid']
+    user.password = SecureRandom.hex(9)
     user.save!
     user
   end

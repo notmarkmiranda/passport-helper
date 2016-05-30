@@ -1,7 +1,7 @@
 require "rails_helper"
 
-feature "visitor can sign up via e-mail" do
-  scenario "with all required credentials" do
+feature "visitor using e-mail" do
+  xscenario "can sign up with all required credentials" do
     visit "/"
     click_link "Login or Register"
     fill_in "E-Mail", with: "markmiranda51@gmail.com"
@@ -17,4 +17,27 @@ feature "visitor can sign up via e-mail" do
     expect(page).to have_content "Name: Mark Miranda"
     expect(page).to have_content "Email: markmiranda51@gmail.com"
   end
+
+  scenario "cannot sign up while missing password" do
+    visit "/"
+    click_link "Login or Register"
+    fill_in "E-Mail", with: "markmiranda51@gmail.com"
+    # fill_in "Password", with: "password"
+    click_button "Create Account!"
+    expect(current_path).to eq "/login"
+    expect(page).to have_content "Password is too short (minimum is 8 characters)"
+  end
+
+  scenario "cannot sign up while missing email" do
+    visit "/"
+    click_link "Login or Register"
+    # fill_in "E-Mail", with: "markmiranda51@gmail.com"
+    fill_in "Password", with: "password"
+    click_button "Create Account!"
+    expect(current_path).to eq "/login"
+    expect(page).to have_content "Email can't be blank"
+    expect(page).to have_content "Email is invalid"
+  end
+
+
 end

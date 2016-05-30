@@ -6,8 +6,8 @@
   js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=228847670831684";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-
 <%= form_for @user do |f| %>
+
   <%= f.hidden_field :provider, value: "email" %>
   <%= f.label :email, "E-Mail Address:" %>
   <%= f.text_field :email, placeholder: "E-Mail" %><br>
