@@ -9,7 +9,8 @@ Rails.application.routes.draw do
 	get "/dashboard", to: "pages#dashboard", as: "user_dashboard"
 
 	get  "/auth/facebook", as: "facebook_login"
-	get  "/login",  			 to: "sessions#new"
+	get  "/auth/failure",  to: redirect("/")
+	get  "/login",  			 to: "sessions#new", as: "login"
 	post "/login",  			 to: "sessions#create_from_email"
 	get  "/logout", 			 to: "sessions#destroy"
 

@@ -4,8 +4,8 @@ feature "visitor using e-mail" do
   scenario "can sign up with all required credentials" do
     visit "/"
     click_link "Login or Register"
-    fill_in "E-Mail", with: "markmiranda51@gmail.com"
-    fill_in "Password", with: "password"
+    fill_in "user[email]", with: "markmiranda51@gmail.com"
+    fill_in "user[password]", with: "password"
     click_button "Create Account!"
     expect(current_path).to eq complete_registration_path
     expect(page).to have_content "Thanks for signing up!"
@@ -21,7 +21,7 @@ feature "visitor using e-mail" do
   scenario "cannot sign up while missing password" do
     visit "/"
     click_link "Login or Register"
-    fill_in "E-Mail", with: "markmiranda51@gmail.com"
+    fill_in "user[email]", with: "markmiranda51@gmail.com"
     click_button "Create Account!"
     expect(current_path).to eq "/users"
     expect(page).to have_content "Password is too short (minimum is 8 characters)"
@@ -30,7 +30,7 @@ feature "visitor using e-mail" do
   scenario "cannot sign up while missing email" do
     visit "/"
     click_link "Login or Register"
-    fill_in "Password", with: "password"
+    fill_in "user[password]", with: "password"
     click_button "Create Account!"
     expect(current_path).to eq "/users"
     expect(page).to have_content "Email can't be blank"

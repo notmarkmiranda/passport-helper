@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       flash[:success] = "Welcome, #{@user.name}!"
       redirect_to user_dashboard_path
     rescue
-      flash[:warning] = "That didn't work, try again."
+      flash.now[:warning] = "That didn't work, try again."
       redirect_to root_path
     end
     # render text: request.env['omniauth.auth'].to_json
