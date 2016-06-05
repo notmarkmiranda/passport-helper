@@ -11,5 +11,5 @@ describe PagesController do
     get :dashboard
     expect(response).to render_template(:dashboard)
   end
-  
+
 end

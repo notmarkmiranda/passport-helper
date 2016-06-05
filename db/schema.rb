@@ -11,10 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160528141430) do
+ActiveRecord::Schema.define(version: 20160605002344) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "passports", force: :cascade do |t|
+    t.string   "name"
+    t.date     "start"
+    t.date     "expiration"
+    t.string   "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_passports", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "passport_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "user_passports", ["passport_id"], name: "index_user_passports_on_passport_id", using: :btree
+  add_index "user_passports", ["user_id"], name: "index_user_passports_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "provider"
@@ -31,4 +50,6 @@ ActiveRecord::Schema.define(version: 20160528141430) do
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
   add_index "users", ["provider"], name: "index_users_on_provider", using: :btree
 
+  add_foreign_key "user_passports", "passports"
+  add_foreign_key "user_passports", "users"
 end

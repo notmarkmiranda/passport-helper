@@ -7,6 +7,9 @@ describe User, "validations" do
 	it { should validate_presence_of(:email) }
 	it { should validate_uniqueness_of(:email) }
 
+	it { should have_many(:user_passports) }
+	it { should have_many(:passports).through(:user_passports)}
+
 end
 
 describe User, "using omniauth" do
