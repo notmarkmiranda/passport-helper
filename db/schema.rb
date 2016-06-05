@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160605020450) do
+ActiveRecord::Schema.define(version: 20160605022223) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,17 @@ ActiveRecord::Schema.define(version: 20160605020450) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "specials", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "venue_id"
+    t.integer  "passport_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "specials", ["passport_id"], name: "index_specials_on_passport_id", using: :btree
+  add_index "specials", ["venue_id"], name: "index_specials_on_venue_id", using: :btree
 
   create_table "user_passports", force: :cascade do |t|
     t.integer  "user_id"
@@ -60,6 +71,8 @@ ActiveRecord::Schema.define(version: 20160605020450) do
     t.datetime "updated_at",   null: false
   end
 
+  add_foreign_key "specials", "passports"
+  add_foreign_key "specials", "venues"
   add_foreign_key "user_passports", "passports"
   add_foreign_key "user_passports", "users"
 end
