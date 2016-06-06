@@ -1,8 +1,8 @@
 class SessionsController < ApplicationController
 
-  def new
-    @user = User.new
-  end
+  # def new
+  #   @user = User.new
+  # end
 
   def create
     begin
@@ -18,14 +18,15 @@ class SessionsController < ApplicationController
   end
 
   def create_from_email
+    set_redirect
     user = User.find_by(email: params[:session][:email], provider: "email")
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
       flash[:success] = "Welcome #{user.name}!"
       redirect_to user_dashboard_path
     else
-      flash.now[:warning] = "That didn't work, try again."
-      render :new
+      flash[:warning] = "That didn't work, try again."
+      redirect_to session[:redirect]
     end
   end
 

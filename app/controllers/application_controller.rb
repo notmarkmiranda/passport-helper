@@ -8,5 +8,9 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find_by(id: session[:user_id])
   end
 
+  def set_redirect
+    session[:redirect] = request.referrer || root_path
+  end
+
   helper_method :current_user
 end

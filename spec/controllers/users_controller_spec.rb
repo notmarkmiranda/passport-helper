@@ -5,11 +5,11 @@ describe UsersController do
   it "posts create a new user" do
     expect(session[:user_id]).to be_nil
     expect {
-      post :create, {user: {provider: "email", email: "markmiranda51@gmail.com", password: "password"}}
+      post :create, {user: {provider: "email", email: "markmiranda51@gmail.com", name: "Mark Miranda", password: "password"}}
     }.to change(User, :count).by(1)
     expect(session[:user_id]).to_not be_nil
     expect(flash[:success]).to be_present
-    expect(response).to redirect_to complete_registration_path
+    expect(response).to redirect_to user_dashboard_path
   end
 
   it "users_controller#complete" do

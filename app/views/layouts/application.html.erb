@@ -4,18 +4,35 @@
   <title>PassportHelper</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
+  <script src="https://use.fontawesome.com/f630be39ea.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="bootstrap.js"></script>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= render partial: "shared/navbar" %>
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=228847670831684";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+  <div class="container">
+    <%= render partial: "shared/navbar" %>
 
-	<div class="container">
-		<% flash.each do |key, value| %>
-			<div class="alert alert-<%= key %>">
-				<%= value %>
-			</div>
-		<% end %>
-    <%= yield %>
-	</div>
+    <div class="container">
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %> alert-dismissible fade in", role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <%= value %>
+        </div>
+      <% end %>
+      <%= render partial: "shared/modal" %>
+      <%= yield %>
+    </div>
+  </div>
 </body>
 </html>

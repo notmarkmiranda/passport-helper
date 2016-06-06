@@ -7,6 +7,7 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
+
 <%= form_for User.new do |f| %>
   <%= f.hidden_field :provider, value: "email" %>
   <%= f.label :email, "E-Mail Address:" %>
@@ -16,13 +17,12 @@
   <%= f.submit "Create Account!" %>
 <% end %>
 
-
 <%= link_to image_tag("facebook-login", class:"facebook-login"), facebook_login_path %><br />
 <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="true" data-auto-logout-link="false"></div>
 
 <%= form_for :session, url: login_path do |f| %>
   <%= f.label :email, "E-Mail" %>
-  <%= f.text_field :email, placeholder: "e-mail" %>
+  <%= f.text_field :email, placeholder: "E-Mail" %>
   <%= f.label :password, "Password" %>
   <%= f.text_field :password, placeholder: "Password" %>
   <%= f.submit "Let's Go!" %>

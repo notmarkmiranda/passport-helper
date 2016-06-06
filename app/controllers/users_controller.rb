@@ -4,14 +4,15 @@ class UsersController < ApplicationController
   end
 
   def create
+    set_redirect
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
       flash[:success] = "Thanks for signing up!"
-      redirect_to complete_registration_path
+      redirect_to user_dashboard_path
     else
-      flash.now[:warning] = @user.errors.full_messages.join("<br />").html_safe
-      render "sessions/new"
+      flash[:warning] = @user.errors.full_messages.join("<br />").html_safe
+      redirect_to session[:redirect]
     end
   end
 

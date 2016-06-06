@@ -50,7 +50,7 @@ describe SessionsController, "using email" do
     expect(session[:user_id]).to be_nil
     post :create_from_email, session: {email: @user.email, password: "pass"}
     expect(session[:user_id]).to be_nil
-    expect(response).to render_template :new
+    expect(response).to redirect_to root_path
     expect(flash[:warning]).to be_present
   end
 
@@ -58,7 +58,7 @@ describe SessionsController, "using email" do
     expect(session[:user_id]).to be_nil
     post :create_from_email, session: {email: "mark@markmiranda.ninja", password: "password"}
     expect(session[:user_id]).to be_nil
-    expect(response).to render_template :new
+    expect(response).to redirect_to root_path
     expect(flash[:warning]).to be_present
   end
 end

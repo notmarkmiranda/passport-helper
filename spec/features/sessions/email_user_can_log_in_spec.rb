@@ -10,7 +10,7 @@ feature "email user" do
   scenario "can log in with valid credentials" do
     visit "/"
     click_link "Login or Register"
-    fill_in "session[email]", with: @user.email
+    fill_in "e-mail", with: @user.email
     fill_in "session[password]", with: "password"
     click_button "Let's Go!"
     expect(current_path).to eq user_dashboard_path
@@ -25,7 +25,7 @@ feature "email user" do
     fill_in "session[password]", with: "passwordz"
     click_button "Let's Go!"
     expect(page).to have_content "That didn't work, try again."
-    expect(current_path).to eq login_path
+    expect(current_path).to eq "/"
   end
 
   scenario "cannot log in with invalid email" do
@@ -35,7 +35,7 @@ feature "email user" do
     fill_in "session[password]", with: "password"
     click_button "Let's Go!"
     expect(page).to have_content "That didn't work, try again."
-    expect(current_path).to eq login_path
+    expect(current_path).to eq "/"
   end
 
 end
