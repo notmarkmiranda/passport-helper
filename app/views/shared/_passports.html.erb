@@ -1,0 +1,24 @@
+<div class="container">
+<% passports.each do |p| %>
+<div class="card">
+  <div class="card-block">
+    <h5 class="card-title"><%= p.name %></h5>
+    <h6 class="card-subtitle text-muted"><%= p.status %></h6>
+  </div>
+  <img class="card-img-top" src="http://placehold.it/350x180" alt="Card image cap">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><%= p.venues.count %> Venues</li>
+    <li class="list-group-item">Valid from <%= Passport.parse(p.start) %></li>
+    <li class="list-group-item">Valid until <%= Passport.parse(p.expiration) %></li>
+  </ul>
+  <div class="card-block">
+    <%= link_to "Deets", "#", class:"card-link" %>
+    <% if current_user %>
+      <%= link_to "Add to My Account", "#", class:"card-link" %>
+    <% end %>
+    <!-- <a href="#" class="card-link">Card link</a> -->
+    <!-- <a href="#" class="card-link">Another link</a> -->
+  </div>
+</div>
+<% end %>
+</div>

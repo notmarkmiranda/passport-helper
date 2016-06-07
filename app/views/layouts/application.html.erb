@@ -30,8 +30,11 @@
     </div>
   </div>
   <% end %>
-
   <%= render partial: "shared/modal" %>
-  <%= yield %>
+
+  <div class="main-body">
+    <%= yield %>
+  </div>
+  
 </body>
 </html>

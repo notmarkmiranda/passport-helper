@@ -12,4 +12,12 @@ class Passport < ActiveRecord::Base
   def self.parse(date)
     date.strftime("%B %e, %Y")
   end
+
+  def self.active_passports
+    where(status: "active")
+  end
+
+  def self.inactive_passports
+    where.not(status: "active")
+  end
 end
