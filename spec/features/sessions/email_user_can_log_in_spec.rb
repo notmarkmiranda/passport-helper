@@ -10,7 +10,7 @@ feature "email user" do
   scenario "can log in with valid credentials" do
     visit "/"
     click_link "Login or Register"
-    fill_in "e-mail", with: @user.email
+    fill_in "session[email]", with: @user.email
     fill_in "session[password]", with: "password"
     click_button "Let's Go!"
     expect(current_path).to eq user_dashboard_path

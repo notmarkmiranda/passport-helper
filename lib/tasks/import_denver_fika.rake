@@ -1,14 +1,14 @@
 require 'csv'
 
-desc "import denver"
-task import_denver: [ :environment ] do
-  pp = Passport.create(name: "2016 Denver Passport",
-                       start: Date.new(2016, 5, 27),
-                       expiration: Date.new(2016, 9, 5),
+desc "import denver fika"
+task import_denver_fika: [ :environment ] do
+  pp = Passport.create(name: "2016 Denver Fika Passport",
+                       start: Date.new(2016, 4, 1),
+                       expiration: Date.new(2016, 10, 1),
                        status: "active")
   puts "CREATED #{pp.name.upcase} !"
-  csv = "./db/csv/2016DenverDrinks.csv"
-  CSV.foreach(csv, { :row_sep => :auto, encoding:'iso-8859-1:utf-8', headers: true, header_converters: :symbol}) do |row|
+  csv = "./db/csv/2016DenverFika.csv"
+  CSV.foreach(csv, { :row_sep => :auto, encoding:'iso-8859-1:utf-8', headers: true, header_converters: :symbol }) do |row|
     venue = Venue.create_with(address: row[:venue_address],
                               phone: row[:venue_phone],
                               neighborhood: row[:venue_neighborhood],
