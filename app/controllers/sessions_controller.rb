@@ -1,9 +1,5 @@
 class SessionsController < ApplicationController
 
-  # def new
-  #   @user = User.new
-  # end
-
   def create
     begin
       @user = User.from_omniauth(request.env['omniauth.auth'])
@@ -14,7 +10,6 @@ class SessionsController < ApplicationController
       flash.now[:warning] = "That didn't work, try again."
       redirect_to root_path
     end
-    # render text: request.env['omniauth.auth'].to_json
   end
 
   def create_from_email

@@ -71,3 +71,12 @@ def create_users(num = 1)
                 password: "password")
   end
 end
+
+def create_passports(num = 1)
+  num.times do
+    Passport.create(name: Faker::Company.name,
+                    start: Date.new(2016, 1, 1),
+                    expiration: Date.new(2016, 12, 31),
+                    status: "active")
+  end
+end

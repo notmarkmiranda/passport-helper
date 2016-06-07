@@ -16,10 +16,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def complete
-    @user = current_user
-  end
-
   def update
     @user = User.find(params[:id])
     @user.finish_registration(user_params)

@@ -12,11 +12,6 @@ describe UsersController do
     expect(response).to redirect_to user_dashboard_path
   end
 
-  it "users_controller#complete" do
-    get :complete
-    expect(response).to render_template(:complete)
-  end
-
   it "users_controller#update" do
     user = User.create(email: "markmiranda51@gmail.com", password: "password", provider: "email")
     session[:user_id] = user.id
