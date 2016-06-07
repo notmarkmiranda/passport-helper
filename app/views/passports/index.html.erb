@@ -1,7 +1,8 @@
 <% if @active_passports.any? %>
   <div class="container page-header">
     <i class="fa fa-hand-lizard-o fa-2x active" aria-hidden="true"></i>
-    <p>Here's a list of our active passports:</p>
+    <p>Here's a list of active passports:</p>
+    <span>Feel free to submit a passport not listed for approval <a href="#">here</a>.</span>
   </div>
   <%= render partial: "shared/passports", locals: { passports:@active_passports } %>
 <% end %>

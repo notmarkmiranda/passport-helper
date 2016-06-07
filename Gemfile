@@ -14,11 +14,16 @@ gem 'font-awesome-sass'
 gem 'bcrypt'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
+gem 'figaro'
+
+group :production do
+  gem 'rails_12factor'
+end
 
 
 group :development, :test do
   gem 'pry'
-  gem 'figaro'
+
 end
 
 group :test do

@@ -5,13 +5,13 @@
     <h5 class="card-title"><%= p.name %></h5>
     <h6 class="card-subtitle text-muted"><%= p.status %></h6>
   </div>
-  <img class="card-img-top" src="http://placehold.it/350x180" alt="Card image cap">
+  <img class="card-img-top" src="http://placehold.it/348x180" alt="Card image cap">
   <ul class="list-group list-group-flush">
     <li class="list-group-item"><%= p.venues.count %> Venues</li>
     <li class="list-group-item">Valid from <%= Passport.parse(p.start) %></li>
     <li class="list-group-item">Valid until <%= Passport.parse(p.expiration) %></li>
   </ul>
-  <div class="card-block">
+  <div class="card-block footer">
     <%= link_to "Deets", "#", class:"card-link" %>
     <% if current_user %>
       <%= link_to "Add to My Account", "#", class:"card-link" %>

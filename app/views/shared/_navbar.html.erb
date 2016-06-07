@@ -1,4 +1,5 @@
 <nav class="navbar navbar-fixed-top navbar-dark">
+    <div class="container">
     <div class="navbar-header">
       <%= link_to "Passport Helper", root_path, class: "navbar-brand" %>
     </div>
@@ -9,11 +10,12 @@
         <li class="nav-item"><%= link_to "Something Else", passports_path, class:"nav-link" %></li>
         <% if current_user %>
           <li class="nav-item"><%= image_tag current_user.image_url, alt: current_user.name %></li>
-          <li class="nav-item"><%= link_to "Log Out", logout_path %></li>
+          <li class="nav-item"><%= link_to "Log Out", logout_path, class:"nav-link" %></li>
         </ul>
         <% else %>
           <li class="nav-item"><%= link_to "Login or Register", "#", class:"nav-link", data: {toggle: "modal", target: "#loginModal"}%></li>
         <% end %>
         </ul>
+    </div>
     </div>
 </nav>

@@ -81,5 +81,3 @@ test:
 production:
   <<: *default
   database: passport-helper_production
-  # username: passport-helper
-  # password: <%= ENV['PASSPORT-HELPER_DATABASE_PASSWORD'] %>
