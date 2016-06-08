@@ -7,9 +7,5 @@ describe PagesController do
     expect(response).to render_template(:index)
   end
 
-  it "sends to a dashboard page" do
-    get :dashboard
-    expect(response).to render_template(:dashboard)
-  end
 
 end

@@ -7,8 +7,7 @@ Rails.application.routes.draw do
 
 	get "/auth/:provider/callback", to: "sessions#create"
 
-	get "/dashboard", to: "pages#dashboard", as: "user_dashboard"
-
+	get "/dashboard", to: "users#show", as: "user_dashboard"
 	get  "/auth/facebook", as: "facebook_login"
 	get  "/auth/failure",  to: redirect("/")
 	get  "/login",  			 to: "sessions#new", as: "login"

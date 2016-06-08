@@ -4,6 +4,7 @@ feature "visitor using e-mail" do
   before do
     Capybara.current_session.driver.header 'Referer', root_path
   end
+
   scenario "can sign up with all required credentials" do
     visit "/"
     click_link "Login or Register"
