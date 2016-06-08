@@ -1,17 +1,35 @@
 <% if current_user %>
-
-	<div class="panel panel-default">
-		<div class="panel-body">
-			<ul>
-				<li><strong>Name:</strong> <%= current_user.name %></li>
-				<li><strong>Email:</strong> <%= current_user.email %></li>
-				<li><strong>Provider:</strong> <%= current_user.provider %></li>
-				<li><strong>uID:</strong> <%= current_user.uid %></li>
-				<li><strong>Avatar URL:</strong> <%= current_user.image_url %></li>
-				<li><strong>URL:</strong> <%= current_user.url %></li>
-			</ul>
-		</div>
-		
+<div class="container">
+	<div class="page-header">
+		<i class="fa fa-tachometer fa-2x active" aria-hidden="true"></i>
+		<p>Dashboard!</p>
 	</div>
-<% else %>
+	<div class="list-group">
+		<div class="list-group-item active">
+			<h4 class="list-group-item-heading profile-header">Profile</h4>
+		</div>
+	</div>
+	<div class="list-group-item profile-body">
+		<p>Name: <%= @user.name %><br />
+			E-Mail: <%= @user.email %></p>
+			<a href="#">Edit Profile</a>
+	</div>
+		<hr />
+	<div class="row">
+		<div class="col-md-6">
+		<div class="list-group">
+			<div class="list-group-item active">
+
+				<h4 class="list-group-item-heading profile-header">Passports<span class="label label-default label-pill pull-md-right">14</span></h4>
+			</div>
+		</div>
+		<div class="list-group-item profile-body">
+			<p>Name: <%= @user.name %><br />
+				E-Mail: <%= @user.email %></p>
+				<a href="#">Edit Profile</a>
+		</div>
+</div>
+
+	</div>
+</div>
 <% end %>

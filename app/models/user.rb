@@ -16,12 +16,13 @@ class User < ActiveRecord::Base
     user.name = auth_hash['info']['name']
     user.email = auth_hash['info']['email']
     user.image_url = auth_hash['info']['image']
-    user.url = auth_hash['info']['urls'][user.provider.capitalize]
+    # user.url = auth_hash['info']['urls'][user.provider.capitalize]
     user.uid = auth_hash['uid']
     user.password = SecureRandom.hex(9)
     user.save!
     user
   end
+  
 
   def finish_registration(incoming_params)
     update(incoming_params)

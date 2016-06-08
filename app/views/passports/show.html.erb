@@ -31,18 +31,17 @@
     <% @venues.each do |v| %>
     <div class="col-md-6">
       <div class="list-group venue-cards">
-        <li class="list-group-item venue-heading">
+        <li class="list-group-item venue venue-heading">
           <h5 class="list-group-item-heading"><%= v.name %></h5>
           <p class="list-group-item-text"><%= link_to "#{v.website}", "http://#{v.website}", target: "_blank" %></p>
         </li>
-        <li class="list-group-item">
-          <!-- <h4 class="list-group-item-heading"></h4> -->
+        <li class="list-group-item venue">
           <p class="list-group-item-text"><%= v.address %></p>
           <% if v.phone %>
             <p class="list-group-item-text"><%= v.phone %></p>
           <% end %>
         </li>
-        <li class="list-group-item">
+        <li class="list-group-item venue">
           <p class="list-group-item-text"><%= v.passport_specials(@passport) %></p>
         </li>
       </div>
