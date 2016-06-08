@@ -98,3 +98,9 @@ def create_specials(num = 1, venue, passport)
     passport_id: passport)
   end
 end
+
+def create_user_passports(num = 1, user, passport)
+  num.times do
+    UserPassport.create(user_id: user, passport_id: passport)
+  end
+end

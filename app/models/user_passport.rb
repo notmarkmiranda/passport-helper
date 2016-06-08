@@ -5,4 +5,7 @@ class UserPassport < ActiveRecord::Base
   validates :user_id, presence: true, uniqueness: { scope: :passport_id, message: "You've already added that passport to your account!" }
 
   # validates_uniqueness_of :user_id, scope: :passport_id
+  def self.lookup(user, passport)
+    find_by(user_id: user.id, passport_id: passport.id).id
+  end
 end
