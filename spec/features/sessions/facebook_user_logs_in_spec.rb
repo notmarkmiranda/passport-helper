@@ -1,11 +1,14 @@
 require "rails_helper"
 
 feature "facebook user logs in" do
+  before do
+    Capybara.current_session.driver.header 'Referer', root_path
+  end
 
   scenario "with valid credentials" do
+    # request.env["HTTP_REFERER"] = root_path
     visit facebook_login_path
     expect(page).to have_content "Welcome, Mark Miranda!"
-    expect(page).to have_content "Name: Mark Miranda"
   end
 
   xscenario "with invalid credentials" do

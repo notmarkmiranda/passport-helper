@@ -1,6 +1,9 @@
 require "rails_helper"
 
 feature "visitor using e-mail" do
+  before do
+    Capybara.current_session.driver.header 'Referer', root_path
+  end
   scenario "can sign up with all required credentials" do
     visit "/"
     click_link "Login or Register"
@@ -8,11 +11,8 @@ feature "visitor using e-mail" do
     fill_in "user[password]", with: "password"
     fill_in "user[name]", with: "Mark Miranda"
     click_button "Create New Account!"
-    expect(current_path).to eq user_dashboard_path
     expect(page).to have_content "Thanks for signing up!"
-    expect(current_path).to eq user_dashboard_path
-    expect(page).to have_content "Name: Mark Miranda"
-    expect(page).to have_content "Email: markmiranda51@gmail.com"
+    expect(current_path).to eq root_path
   end
 
   scenario "cannot sign up while missing password" do

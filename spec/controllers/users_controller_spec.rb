@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 describe UsersController do
+  before do
+    request.env["HTTP_REFERER"] = root_path
+  end
 
   it "posts create a new user" do
     expect(session[:user_id]).to be_nil
@@ -9,7 +12,7 @@ describe UsersController do
     }.to change(User, :count).by(1)
     expect(session[:user_id]).to_not be_nil
     expect(flash[:success]).to be_present
-    expect(response).to redirect_to user_dashboard_path
+    expect(response).to redirect_to root_path
   end
 
   it "users_controller#update" do

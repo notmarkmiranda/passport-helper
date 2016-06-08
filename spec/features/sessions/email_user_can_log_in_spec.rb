@@ -12,10 +12,9 @@ feature "email user" do
     click_link "Login or Register"
     fill_in "session[email]", with: @user.email
     fill_in "session[password]", with: "password"
-    click_button "Let's Go!"
-    expect(current_path).to eq user_dashboard_path
+    click_on "Let's Go!"
+    expect(current_path).to eq root_path
     expect(page).to have_content "Welcome #{@user.name}!"
-    expect(page).to have_content "Name: #{@user.name}"
   end
 
   scenario "cannot log in with invalid password" do
