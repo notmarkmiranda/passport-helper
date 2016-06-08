@@ -11,6 +11,12 @@ class UserPassportsController < ApplicationController
     end
   end
 
+  def destroy
+    set_redirect
+    UserPassport.delete(params[:id])
+    redirect_to session[:redirect]
+  end
+
   private
     def user_passport_params
       params.permit(:passport_id, :user_id)

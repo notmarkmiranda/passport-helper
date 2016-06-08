@@ -64,3 +64,21 @@ describe User, "using email" do
 	end
 
 end
+
+describe User, "#passport_count" do
+
+		before do
+			create_users(2)
+			create_passports(3)
+			@user = User.first
+			passport1 = Passport.first
+			passport3 = Passport.last
+			UserPassport.create(passport_id: passport1.id, user_id: @user.id)
+			UserPassport.create(passport_id: passport3.id, user_id: @user.id)
+		end
+
+		it "can count a users passports" do
+			expect(@user.passport_count).to eq 2
+		end
+
+end

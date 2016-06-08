@@ -8,4 +8,5 @@ class PassportsController < ApplicationController
     @passport = Passport.find_by(id: params[:id])
     @venues = @passport.venues
   end
+
 end

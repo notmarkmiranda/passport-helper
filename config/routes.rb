@@ -3,8 +3,8 @@ Rails.application.routes.draw do
 
 	resources :users, only: [:create, :update]
   resources :passports, only: [:index, :show]
-	resources :user_passports, only: [:create]
-
+	resources :user_passports, only: [:create, :destroy]
+	
 	get "/auth/:provider/callback", to: "sessions#create"
 
 	get "/dashboard", to: "users#show", as: "user_dashboard"

@@ -22,7 +22,11 @@ class User < ActiveRecord::Base
     user.save!
     user
   end
-  
+
+  def passport_count
+    passports.count
+  end
+
 
   def finish_registration(incoming_params)
     update(incoming_params)

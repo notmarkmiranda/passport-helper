@@ -20,13 +20,15 @@
 		<div class="list-group">
 			<div class="list-group-item active">
 
-				<h4 class="list-group-item-heading profile-header">Passports<span class="label label-default label-pill pull-md-right">14</span></h4>
+				<h4 class="list-group-item-heading profile-header">Passports<span class="label label-default label-pill pull-md-right"><%= @user.passport_count %></span></h4>
 			</div>
 		</div>
 		<div class="list-group-item profile-body">
-			<p>Name: <%= @user.name %><br />
-				E-Mail: <%= @user.email %></p>
-				<a href="#">Edit Profile</a>
+			<p>
+				<% @user.passports.each do |passport| %>
+					<%= passport.name %> - <%= button_to "test", "#", name: "add-to-account" %><br />
+				<% end %>
+			</p>
 		</div>
 </div>
 
