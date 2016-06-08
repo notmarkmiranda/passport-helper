@@ -15,12 +15,15 @@ VCR.configure do |c|
 end
 
 info_hash = { email: "markmiranda51@gmail.com",
-name: "Mark Miranda",
-image: "http://thesocialmediamonthly.com/wp-content/uploads/2015/08/photo.png",
-urls: "http://www.facebook.com/markmiranda51"}
+  name: "Mark Miranda",
+  image: "http://thesocialmediamonthly.com/wp-content/uploads/2015/08/photo.png",
+  urls: "http://www.facebook.com/markmiranda51"}
+
 info = OpenStruct.new(info_hash)
+
 ah = { provider: "facebook",
-       info: info }
+    info: info }
+
 auth_hash = OpenStruct.new(ah)
 
 OmniAuth.config.test_mode = true
@@ -30,9 +33,9 @@ def mock_auth_hash
   OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new({
     "provider" => "facebook",
     "info" => {"name" => "Mark Miranda",
-               "image" => "http://thesocialmediamonthly.com/wp-content/uploads/2015/08/photo.png",
-           "urls" => "http://www.facebook.com/markmiranda51"}
-  })
+      "image" => "http://thesocialmediamonthly.com/wp-content/uploads/2015/08/photo.png",
+      "urls" => "http://www.facebook.com/markmiranda51"}
+      })
 end
 
 RSpec.configure do |config|
@@ -66,17 +69,36 @@ end
 def create_users(num = 1)
   num.times do
     User.create(email: Faker::Internet.email,
-                provider: "email",
-                name: Faker::Name.name,
-                password: "password")
+    provider: "email",
+    name: Faker::Name.name,
+    password: "password")
   end
 end
 
 def create_passports(num = 1)
   num.times do
     Passport.create(name: Faker::Company.name,
-                    start: Date.new(2016, 1, 1),
-                    expiration: Date.new(2016, 12, 31),
-                    status: "active")
+    start: Date.new(2016, 1, 1),
+    expiration: Date.new(2016, 12, 31),
+    status: "active")
+  end
+end
+
+def create_venues(num = 1)
+  num.times do
+    Faker::Config.locale = 'en-US'
+    Venue.create(name: Faker::Company.name,
+    address: Faker::Address.street_address,
+    phone: Faker::PhoneNumber.cell_phone,
+    neighborhood: Faker::Address.street_name,
+    website: "www.#{Faker::Hipster.word}.com")
+  end
+end
+
+def create_specials(num = 1, venue, passport)
+  num.times do
+    Special.create(name: Faker::Hipster.word,
+    venue_id: venue,
+    passport_id: passport)
   end
 end

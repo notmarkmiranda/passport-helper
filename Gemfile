@@ -15,6 +15,7 @@ gem 'bcrypt'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'figaro'
+gem 'table_print'
 
 group :production do
   gem 'rails_12factor'

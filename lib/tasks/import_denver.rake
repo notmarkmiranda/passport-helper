@@ -5,7 +5,7 @@ task import_denver: [ :environment ] do
   pp = Passport.create(name: "2016 Denver Passport",
                        start: Date.new(2016, 5, 27),
                        expiration: Date.new(2016, 9, 5),
-                       url: "http://www.thepassportprogram.com/denver",
+                       url: "www.thepassportprogram.com/denver",
                        status: "active")
   puts "CREATED #{pp.name.upcase} !"
   csv = "./db/csv/2016DenverDrinks.csv"

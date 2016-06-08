@@ -5,6 +5,7 @@ task import_denver_fika: [ :environment ] do
   pp = Passport.create(name: "2016 Denver Fika Passport",
                        start: Date.new(2016, 4, 1),
                        expiration: Date.new(2016, 10, 1),
+                       url: "www.thepassportprogram.com/fika/",
                        status: "active")
   puts "CREATED #{pp.name.upcase} !"
   csv = "./db/csv/2016DenverFika.csv"

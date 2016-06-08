@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 	root "pages#index"
 
 	resources :users, only: [:create, :update]
-  resources :passports, only: [:index]
+  resources :passports, only: [:index, :show]
 
 	get "/auth/:provider/callback", to: "sessions#create"
 

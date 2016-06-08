@@ -1,24 +1,29 @@
 <div class="container">
-<% passports.each do |p| %>
-<div class="card">
-  <div class="card-block">
-    <h5 class="card-title"><%= p.name %></h5>
-    <h6 class="card-subtitle text-muted"><%= p.status %></h6>
-  </div>
-  <img class="card-img-top" src="http://placehold.it/348x180" alt="Card image cap">
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item"><%= p.venues.count %> Venues</li>
-    <li class="list-group-item">Valid from <%= Passport.parse(p.start) %></li>
-    <li class="list-group-item">Valid until <%= Passport.parse(p.expiration) %></li>
-  </ul>
-  <div class="card-block footer">
-    <%= link_to "Deets", "#", class:"card-link" %>
-    <% if current_user %>
+  <% passports.each do |p| %>
+  <div class="card">
+    <div class="card-block">
+      <h5 class="card-title"><%= p.name %></h5>
+      <h6 class="card-subtitle text-muted"><%= link_to "#{p.url}", "http://#{p.url}", target: "_blank" %></h6>
+    </div>
+    <img class="card-img-top" src="http://placehold.it/348x180" alt="<%= p.name %>">
+    <!-- paperclip needs to bring in url and specific szie -->
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <h6 class="list-group-item-heading"><%= p.venues.count %> Venues</h6>
+      </li>
+      <li class="list-group-item">
+        <h6 class="list-group-item-heading">Valid From</h6>
+        <p class="list-group-item-text"><%= "#{Passport.parse(p.start)} to #{Passport.parse(p.expiration)}" %></p>
+      </li>
+    </ul>
+    <div class="card-block footer">
+      <%= link_to "Deets", passport_path(p), class:"card-link" %>
+      <% if current_user %>
       <%= link_to "Add to My Account", "#", class:"card-link" %>
-    <% end %>
-    <!-- <a href="#" class="card-link">Card link</a> -->
-    <!-- <a href="#" class="card-link">Another link</a> -->
+      <% end %>
+      <!-- <a href="#" class="card-link">Card link</a> -->
+      <!-- <a href="#" class="card-link">Another link</a> -->
+    </div>
   </div>
-</div>
-<% end %>
+  <% end %>
 </div>

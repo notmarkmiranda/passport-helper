@@ -20,4 +20,5 @@ class Passport < ActiveRecord::Base
   def self.inactive_passports
     where.not(status: "active")
   end
+
 end
