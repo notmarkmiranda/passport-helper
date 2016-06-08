@@ -30,6 +30,7 @@ end
 group :test do
   gem 'vcr'
   gem 'faker'
+  gem 'mocha'
   gem 'launchy'
   gem 'webmock'
   gem 'capybara'

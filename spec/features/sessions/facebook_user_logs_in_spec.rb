@@ -1,4 +1,4 @@
-require "rails_helper"
+require 'rails_helper'
 
 feature "facebook user logs in" do
   before do

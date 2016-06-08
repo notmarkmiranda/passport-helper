@@ -1,4 +1,4 @@
-require "rails_helper"
+require 'rails_helper'
 
 feature "visitor using e-mail" do
   before do
