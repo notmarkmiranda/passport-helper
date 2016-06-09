@@ -13,7 +13,7 @@
       </li>
       <li class="list-group-item">
         <h6 class="list-group-item-heading">Valid From</h6>
-        <p class="list-group-item-text"><%= "#{Passport.parse(p.start)} to #{Passport.parse(p.expiration)}" %></p>
+        <p class="list-group-item-text"><%= "#{Formatter.parse(p.start)} to #{Formatter.parse(p.expiration)}" %></p>
       </li>
     </ul>
     <div class="card-block footer">

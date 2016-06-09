@@ -1,4 +1,6 @@
 class Group < ActiveRecord::Base
+  include Formatter
+  
   has_many :memberships
   has_many :users, through: :memberships
 

@@ -1,4 +1,6 @@
 class Passport < ActiveRecord::Base
+  include Formatter
+
   has_many :user_passports
   has_many :users, through: :user_passports
   has_many :specials
@@ -9,9 +11,9 @@ class Passport < ActiveRecord::Base
   validates :expiration, presence: true
   validates :status, presence: true
 
-  def self.parse(date)
-    date.strftime("%B %e, %Y")
-  end
+  # def self.parse(date)
+  #   date.strftime("%B %e, %Y")
+  # end
 
   def self.active_passports
     where(status: "active")

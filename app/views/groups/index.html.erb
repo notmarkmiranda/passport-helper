@@ -7,13 +7,10 @@
     <ul class="list-group list-group-flush">
       <li class="list-group-item">
         <h6 class="list-group-item-heading"><%= "#{g.membership_count} Member".pluralize(g.membership_count) %> </h6>
+        <p class="list-group-item-text">Established <%= Formatter.parse(g.created_at) %></p>
       </li>
 
     </ul>
   </div>
   <% end %>
 </div>
-
-<% @groups.each do |group| %>
-  <%= group.name %>
-<% end %>

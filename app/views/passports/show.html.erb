@@ -11,7 +11,7 @@
         </li>
         <li class="list-group-item">
           <h4 class="list-group-item-heading">Valid From</h4>
-          <p class="list-group-item-text"><%= "#{Passport.parse(@passport.start)} to #{Passport.parse(@passport.expiration)}" %></p>
+          <p class="list-group-item-text"><%= "#{Formatter.parse(@passport.start)} to #{Formatter.parse(@passport.expiration)}" %></p>
         </li>
         <li class="list-group-item">
           <h4 class="list-group-item-heading">Do you have this passport?</h4>
