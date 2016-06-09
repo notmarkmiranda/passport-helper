@@ -104,3 +104,9 @@ def create_user_passports(num = 1, user, passport)
     UserPassport.create(user_id: user, passport_id: passport)
   end
 end
+
+def create_groups(num = 1)
+  num.times do
+    Group.create(name: Faker::Hipster.word)
+  end
+end

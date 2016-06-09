@@ -3,6 +3,9 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, length: { minimum: 8 }, on: :create
 
+  has_many :memberships
+  has_many :groups, through: :memberships
+
   has_many :user_passports
   has_many :passports, through: :user_passports
 

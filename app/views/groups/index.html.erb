@@ -1,0 +1,19 @@
+<div class="container">
+  <% @groups.each do |g| %>
+  <div class="card">
+    <div class="card-block">
+      <h5 class="cart-title"><%= link_to g.name, group_path(g) %></h5>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <h6 class="list-group-item-heading"><%= "#{g.membership_count} Member".pluralize(g.membership_count) %> </h6>
+      </li>
+
+    </ul>
+  </div>
+  <% end %>
+</div>
+
+<% @groups.each do |group| %>
+  <%= group.name %>
+<% end %>

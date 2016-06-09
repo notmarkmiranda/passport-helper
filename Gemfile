@@ -16,6 +16,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'figaro'
 gem 'table_print'
+gem 'faker'
 
 group :production do
   gem 'rails_12factor'
@@ -29,7 +30,7 @@ end
 
 group :test do
   gem 'vcr'
-  gem 'faker'
+
   gem 'mocha'
   gem 'launchy'
   gem 'webmock'
