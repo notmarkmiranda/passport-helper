@@ -13,7 +13,7 @@ class UserPassportsController < ApplicationController
 
   def destroy
     set_redirect
-    UserPassport.delete(params[:id])
+    current_user.passports.delete(params[:id])
     redirect_to session[:redirect]
   end
 

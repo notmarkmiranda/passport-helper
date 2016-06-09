@@ -10,15 +10,11 @@ feature "user can delete passport from their account" do
     ApplicationController.any_instance.stubs(:current_user).returns(@user)
   end
 
-  xit "removes a passport from their account" do
+  it "removes a passport from their account" do
     visit "/dashboard"
     expect(page).to have_content @passport.name
-    # click_button "Remove from My Account"
-    # save_and_open_page
-    # page.accept_confirm do
-    #   click_button('OK')
-    # end
-    # expect(page).to_not have_content @passport.name
+    click_button "Remove from My Account"
+    expect(page).to_not have_content @passport.name
   end
 
 end

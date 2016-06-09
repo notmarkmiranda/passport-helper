@@ -26,7 +26,7 @@
 		<div class="list-group-item profile-body">
 				<% @user.passports.each do |passport| %>
 				<div class="passport">
-					<%= link_to passport.name, passport_path(passport) %><%= button_to "Remove from My Account", user_passport_path(UserPassport.lookup(@user, passport)) , name: "add-to-account", method: :delete, data: { confirm: "REALLY?!?" } %>
+					<%= link_to passport.name, passport_path(passport) %><%= button_to "Remove from My Account", user_passport_path(passport) , name: "add-to-account", method: :delete, data: { confirm: "REALLY?!?" } %>
 				</div>
 				<% end %>
 		</div>

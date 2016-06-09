@@ -12,8 +12,9 @@ describe UserPassportsController do
     end
 
     it "can delete passports" do
+      session[:user_id] = @user.id
       expect(@user.passports.count).to eq 1
-      delete :destroy, {id: @up.id}
+      delete :destroy, id: @passport.id
       expect(@user.passports.count).to eq 0
     end
   end
