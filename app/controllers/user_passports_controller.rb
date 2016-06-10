@@ -1,6 +1,5 @@
 class UserPassportsController < ApplicationController
   def create
-    set_redirect
     up = UserPassport.new(user_passport_params)
     if up.save
       flash[:success] = "Added to Your Account!"
@@ -12,7 +11,6 @@ class UserPassportsController < ApplicationController
   end
 
   def destroy
-    set_redirect
     passport = Passport.find(params[:id])
     current_user.passports.delete(params[:id])
     flash[:success] = "Removed #{passport.name} from your account!"

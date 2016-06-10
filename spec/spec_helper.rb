@@ -107,6 +107,8 @@ end
 
 def create_groups(num = 1)
   num.times do
-    Group.create(name: Faker::Hipster.word)
+    create_passports(1)
+    Group.create(name: Faker::Hipster.word,
+                 passport_id: Passport.first.id)
   end
 end

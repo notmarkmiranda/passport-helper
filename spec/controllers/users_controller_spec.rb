@@ -3,6 +3,9 @@ require 'rails_helper'
 describe UsersController do
   before do
     request.env["HTTP_REFERER"] = root_path
+    create_users(1)
+    user = User.first
+    ApplicationController.any_instance.stubs(:current_user).returns(user)
   end
 
   it "posts create a new user" do

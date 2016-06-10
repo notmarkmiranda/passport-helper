@@ -13,7 +13,6 @@ class SessionsController < ApplicationController
   end
 
   def create_from_email
-    set_redirect
     user = User.find_by(email: params[:session][:email], provider: "email")
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
@@ -26,10 +25,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    if current_user
-      session.delete(:user_id)
-      flash[:success] = "See you later!"
-    end
-    redirect_to :back
+    session.delete(:user_id)
+    flash[:success] = "See you later!"
+    redirect_to root_path
   end
 end
