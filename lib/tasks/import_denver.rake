@@ -3,6 +3,7 @@ require 'csv'
 desc "import denver"
 task import_denver: [ :environment ] do
   pp = Passport.create(name: "2016 Denver Passport",
+                       city: "Denver",
                        start: Date.new(2016, 5, 27),
                        expiration: Date.new(2016, 9, 5),
                        url: "www.thepassportprogram.com/denver",

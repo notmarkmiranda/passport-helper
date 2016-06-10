@@ -3,6 +3,7 @@ require 'csv'
 desc "import denver fika"
 task import_denver_fika: [ :environment ] do
   pp = Passport.create(name: "2016 Denver Fika Passport",
+                       city: "Denver",
                        start: Date.new(2016, 4, 1),
                        expiration: Date.new(2016, 10, 1),
                        url: "www.thepassportprogram.com/fika/",
@@ -15,8 +16,12 @@ task import_denver_fika: [ :environment ] do
                               neighborhood: row[:venue_neighborhood],
                               website: row[:venue_website])
                               .find_or_create_by(name: row[:venue_name])
-    # y = Yelp.client.search("Denver",)
     venue.specials.create(name: row[:special_offer], passport_id: pp.id)
+    response = Yelp.client.search(pp.city, {term: venue.name, limit: 1})
+    require 'pry'; binding.pry
+    if response.businesses.first.name
+      
+    end
   end
   puts "CREATED #{pp.venues.count} VENUES!"
   puts "CREATED #{pp.specials.count} SPECIALS!"
