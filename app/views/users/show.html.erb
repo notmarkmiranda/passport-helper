@@ -12,7 +12,7 @@
 	<div class="list-group-item profile-body">
 		<p>Name: <%= @user.name %><br />
 			E-Mail: <%= @user.email %></p>
-			<a href="#">Edit Profile</a>
+			<a href="#" class="add-btn">Edit Profile</a>
 		</div>
 		<hr />
 		<div class="row">
@@ -28,7 +28,7 @@
 				<div class="list-group-item profile-body">
 					<% @user.passports.each do |passport| %>
 					<div class="passport">
-						<%= link_to passport.name, passport_path(passport) %><%= button_to "Remove from My Account", user_passport_path(passport) , name: "add-to-account", method: :delete, data: { confirm: "REALLY?!?" } %>
+						<%= link_to passport.name, passport_path(passport) %> - <%= button_to "Remove from My Account", user_passport_path(passport) , name: "add-to-account", method: :delete, data: { confirm: "REALLY?!?" } %>
 					</div>
 					<% end %>
 				</div>
@@ -37,13 +37,17 @@
 			<div class="col-md-6">
 				<div class="list-group">
 					<div class="list-group-item active">
-						<h4 class="list-group-item-heading profile-header">Groups<span class="label label-default label-pill pull-md-right"><%= @user.passport_count %></span></h4>
-						<p><%= link_to "Create a New Group", "#" %></p>
+						<h4 class="list-group-item-heading profile-header">Groups<span class="label label-default label-pill pull-md-right"><%= @user.group_count %></span></h4>
+						<p><%= link_to "Create a New Group", new_group_path %></p>
 					</div>
 				</div>
 				<div class="list-group-item profile-body">
+					<% @user.groups.each do |group| %>
+						<div class="group">
+							<%= link_to group.name, group_path(group) %> - <%= button_to "Leave the Group", membership_path(group) , name: "add-to-account", method: :delete, data: { confirm: "Done with these people?" } %>
+						</div>
+					<% end %>
 
-					
 				</div>
 			</div>
 

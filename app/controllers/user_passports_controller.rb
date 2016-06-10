@@ -13,12 +13,14 @@ class UserPassportsController < ApplicationController
 
   def destroy
     set_redirect
+    passport = Passport.find(params[:id])
     current_user.passports.delete(params[:id])
+    flash[:success] = "Removed #{passport.name} from your account!"
     redirect_to session[:redirect]
   end
 
   private
-    def user_passport_params
-      params.permit(:passport_id, :user_id)
-    end
+  def user_passport_params
+    params.permit(:passport_id, :user_id)
+  end
 end

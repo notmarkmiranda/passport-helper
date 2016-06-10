@@ -1,7 +1,7 @@
 <div class="container">
   <% @groups.each do |g| %>
   <div class="card">
-    <div class="card-block">
+    <div class="card-block group">
       <h5 class="cart-title"><%= link_to g.name, group_path(g) %></h5>
     </div>
     <ul class="list-group list-group-flush">
@@ -9,8 +9,8 @@
         <h6 class="list-group-item-heading"><%= "#{g.membership_count} Member".pluralize(g.membership_count) %> </h6>
         <p class="list-group-item-text">Established <%= Formatter.parse(g.created_at) %></p>
       </li>
-
     </ul>
-  </div>
+</div>
+
   <% end %>
 </div>

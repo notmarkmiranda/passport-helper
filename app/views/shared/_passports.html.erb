@@ -1,7 +1,7 @@
 <div class="container">
   <% passports.each do |p| %>
   <div class="card">
-    <div class="card-block">
+    <div class="card-block passport">
       <h5 class="card-title"><%= link_to p.name, passport_path(p) %></h5>
       <h6 class="card-subtitle text-muted"><%= link_to "#{p.url}", "http://#{p.url}", target: "_blank" %></h6>
     </div>
@@ -19,7 +19,7 @@
     <div class="card-block footer">
       <%= link_to "Deets", passport_path(p), class:"card-link" %>
       <% if current_user %>
-        <%= button_to "Add to My Account", user_passports_path(passport_id: p.id, user_id: current_user.id), name: "add-to-account", class: "add-to-account" %>
+      <%= button_to "Add to My Account", user_passports_path(passport_id: p.id, user_id: current_user.id), name: "add-to-account", class: "add-to-account" %>
       <% end %>
     </div>
   </div>

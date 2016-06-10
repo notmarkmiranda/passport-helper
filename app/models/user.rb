@@ -30,6 +30,9 @@ class User < ActiveRecord::Base
     passports.count
   end
 
+  def group_count
+    groups.count
+  end
 
   def finish_registration(incoming_params)
     update(incoming_params)

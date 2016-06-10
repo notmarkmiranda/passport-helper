@@ -4,11 +4,14 @@ Rails.application.routes.draw do
 	resources :users, only: [:create, :update]
   resources :passports, only: [:index, :show]
 	resources :user_passports, only: [:create, :destroy]
-	resources :groups, only: [:index, :show]
+	resources :groups, only: [:index, :show, :new, :create]
+	resources :memberships, only: [:destroy, :create]
 
 	get "/auth/:provider/callback", to: "sessions#create"
 
-	get "/dashboard", to: "users#show", as: "user_dashboard"
+	get  "/dashboard", to: "users#show", as: "user_dashboard"
+	get  "/auth/facebook/callback", to: "sessions#create"
+	post "/auth/facebook/callback", to: "sessions#create"
 	get  "/auth/facebook", as: "facebook_login"
 	get  "/auth/failure",  to: redirect("/")
 	get  "/login",  			 to: "sessions#new", as: "login"

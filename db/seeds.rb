@@ -18,8 +18,11 @@ def r_day
   Random.new.rand(1..28)
 end
 
-10.times do
-  Group.create(name: Faker::Hipster.word,
-               created_at: Date.new(r_year, r_month, r_day))
+if Passport.count > 0
+  10.times do
+    Group.create(name: Faker::Hipster.word,
+                 passport_id: Random.new.rand(1..(Passport.count)),
+                 created_at: Date.new(r_year, r_month, r_day))
+  end
+  puts "CREATED #{Group.count} GROUPS!"
 end
-puts "CREATED #{Group.count} GROUPS!"

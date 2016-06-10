@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="page-header">
+		<i class="fa fa-users fa-2x active" aria-hidden="true"></i>
+		<p>Creating a new group?!</p>
+	</div>
+  <div class=" col-md-4 col-md-offset-4">
+
+  <%= form_for @group do |f| %>
+  <%= f.label :name, "Name" %>
+  <%= f.text_field :name, placeholder: "Group Name", class:"form-control" %>
+  <%= f.label :pasport_id, "What passport does this group have?", class: "new-group-passport-form" %>
+  <%= collection_select(:group, :passport_id, Passport.all, :id, :name, {prompt: true}, {class:"form-control"}) %>
+  <%= f.submit "Create Group!", class:"btn btn-primary new-group-passport-form" %>
+  <% end %>
+</div>
+</div>

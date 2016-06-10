@@ -14,7 +14,8 @@ feature "user can delete passport from their account" do
     visit "/dashboard"
     expect(page).to have_content @passport.name
     click_button "Remove from My Account"
-    expect(page).to_not have_content @passport.name
+
+    expect(page).to_not have_content(@passport.name, count: 2)
   end
 
 end
