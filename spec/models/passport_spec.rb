@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe Passport, 'validations' do
+  it { should have_many(:groups) }
   it { should have_many(:user_passports) }
   it { should have_many(:users).through(:user_passports) }
   it { should have_many(:specials) }

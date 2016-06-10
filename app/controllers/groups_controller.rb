@@ -12,10 +12,13 @@ class GroupsController < ApplicationController
   end
 
   def create
-    group = Group.new(group_params)
-    if group.save
+    @group = Group.new(group_params)
+    if @group.save
       flash[:success] = "#{group.name} Group Created!"
       redirect_to user_dashboard_path
+    else
+      flash[:danger] = @group.errors.full_messages.join(" ")
+      redirect_to :back
     end
   end
 

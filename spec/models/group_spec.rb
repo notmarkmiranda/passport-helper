@@ -1,6 +1,7 @@
 require "rails_helper"
 
 describe Group, 'validations' do
+  it { should belong_to(:passport) }
   it { should have_many(:memberships) }
   it { should have_many(:users).through(:memberships) }
   it { should validate_presence_of(:name) }

@@ -15,6 +15,7 @@ task import_denver_fika: [ :environment ] do
                               neighborhood: row[:venue_neighborhood],
                               website: row[:venue_website])
                               .find_or_create_by(name: row[:venue_name])
+    # y = Yelp.client.search("Denver",)
     venue.specials.create(name: row[:special_offer], passport_id: pp.id)
   end
   puts "CREATED #{pp.venues.count} VENUES!"

@@ -36,6 +36,7 @@
           <p class="list-group-item-text"><%= link_to "#{v.website}", "http://#{v.website}", target: "_blank" %></p>
         </li>
         <li class="list-group-item venue">
+          <p class="list-group-item-text"><%= v.neighborhood %></p>
           <p class="list-group-item-text"><%= v.address %></p>
           <% if v.phone %>
             <p class="list-group-item-text"><%= v.phone %></p>
@@ -43,6 +44,8 @@
         </li>
         <li class="list-group-item venue">
           <p class="list-group-item-text"><%= v.passport_specials(@passport) %></p>
+          <%= image_tag "yelp-logo-xsmall" %>
+          <%= image_tag "https://s3-media2.fl.yelpcdn.com/assets/2/www/img/99493c12711e/ico/stars/v1/stars_4_half.png" %>
         </li>
       </div>
     </div>

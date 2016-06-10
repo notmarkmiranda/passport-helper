@@ -2,8 +2,9 @@ class Group < ActiveRecord::Base
   include Formatter
   after_create :membership_association
 
-  has_many :memberships
-  has_many :users, through: :memberships
+  belongs_to :passport
+  has_many   :memberships
+  has_many   :users, through: :memberships
 
   validates :name, presence: true, uniqueness: true
   validates :passport_id, presence: true
