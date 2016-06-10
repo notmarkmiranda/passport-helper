@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160610170428) do
+ActiveRecord::Schema.define(version: 20160610191146) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(version: 20160610170428) do
     t.string  "yelp_id"
     t.string  "rating_url"
     t.string  "yelp_url"
+    t.integer "review_count"
   end
 
   add_index "yelp_venues", ["venue_id"], name: "index_yelp_venues_on_venue_id", using: :btree

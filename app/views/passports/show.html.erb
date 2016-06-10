@@ -16,9 +16,9 @@
         <li class="list-group-item">
           <h4 class="list-group-item-heading">Do you have this passport?</h4>
           <% if current_user %>
-            <p class="list-group-item-text"><%= button_to "Add to My Account", user_passports_path(passport_id: @passport.id, user_id: current_user.id), name: "add-to-account", class: "add-to-account" %></p>
+          <p class="list-group-item-text"><%= button_to "Add to My Account", user_passports_path(passport_id: @passport.id, user_id: current_user.id), name: "add-to-account", class: "add-to-account" %></p>
           <% else %>
-            <p class="list-group-item-text"><%= link_to "Sign up or Sign In!", "#" , data: {toggle: "modal", target: "#loginModal"}%></p>
+          <p class="list-group-item-text"><%= link_to "Sign up or Sign In!", "#" , data: {toggle: "modal", target: "#loginModal"}%></p>
           <% end %>
         </li>
 
@@ -27,7 +27,10 @@
   </div>
   <div class="row passport-show-venues">
     <!-- <iframe src="https://www.google.com/maps/d/embed?mid=1GLKTAaIJPCvw0q08W1T1MLd7ii8" width="640" height="480"></iframe> -->
-    <h4>Venues</h4>
+    <div class="container page-header">
+      <i class="fa fa-building-o fa-2x active" aria-hidden="true"></i>
+      <p>Venues</p>
+    </div>
     <% @venues.each do |v| %>
     <div class="col-md-6">
       <div class="list-group venue-cards">
@@ -39,14 +42,19 @@
           <p class="list-group-item-text"><%= v.neighborhood %></p>
           <p class="list-group-item-text"><%= v.address %></p>
           <% if v.phone %>
-            <p class="list-group-item-text"><%= v.phone %></p>
+          <p class="list-group-item-text"><%= v.phone %></p>
           <% end %>
         </li>
         <li class="list-group-item venue">
           <p class="list-group-item-text"><%= v.passport_specials(@passport) %></p>
-          <%= image_tag "yelp-logo-xsmall" %>
-          <%= image_tag "https://s3-media2.fl.yelpcdn.com/assets/2/www/img/99493c12711e/ico/stars/v1/stars_4_half.png" %>
         </li>
+        <%= link_to v.yurl, target:"_blank" do %>
+        <li class="list-group-item venue">
+          <%= image_tag "yelp-logo-xsmall" %>
+          <%= image_tag v.ratings %><br />
+          <%= "#{v.review_number} Reviews" %>
+        </li>
+        <% end %>
       </div>
     </div>
     <% end %>

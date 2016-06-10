@@ -17,6 +17,16 @@ task import_denver: [ :environment ] do
                               website: row[:venue_website])
                               .find_or_create_by(name: row[:venue_name])
     venue.specials.create(name: row[:special_offer], passport_id: pp.id)
+    response = Yelp.client.search(pp.city, {term: venue.name, limit: 1}).businesses.first
+    if response.id
+      if response.id
+        YelpVenue.create(venue_id:     venue.id,
+                         yelp_id:      response.id,
+                         rating_url:   response.rating_img_url,
+                         yelp_url:     response.mobile_url,
+                         review_count: response.review_count)
+      end
+    end
   end
   puts "CREATED #{pp.venues.count} VENUES!"
   puts "CREATED #{pp.specials.count} SPECIALS!"
