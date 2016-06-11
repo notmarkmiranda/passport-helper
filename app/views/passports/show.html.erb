@@ -35,7 +35,7 @@
     <div class="col-md-6">
       <div class="list-group venue-cards">
         <li class="list-group-item venue venue-heading">
-          <h5 class="list-group-item-heading"><%= v.name %></h5>
+          <h5 class="list-group-item-heading venue-header"><%= v.name %></h5>
           <p class="list-group-item-text"><%= link_to "#{v.website}", "http://#{v.website}", target: "_blank" %></p>
         </li>
         <li class="list-group-item venue">
@@ -49,7 +49,7 @@
           <p class="list-group-item-text"><%= v.passport_specials(@passport) %></p>
         </li>
         <%= link_to v.yurl, target:"_blank" do %>
-        <li class="list-group-item venue">
+        <li class="list-group-item">
           <%= image_tag "yelp-logo-xsmall" %>
           <%= image_tag v.ratings %><br />
           <%= "#{v.review_number} Reviews" %>

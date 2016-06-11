@@ -30,3 +30,27 @@ describe Venue, "can return the names of a venue's passport specials" do
   end
 
 end
+
+describe Venue, "can return yelp_venue" do
+  before do
+    create_yelp_venue(1)
+    @venue_1 = Venue.first
+    @yv = YelpVenue.first
+  end
+
+  it "#ratings" do
+    expect(@venue_1.ratings).to eq @yv.rating_url
+  end
+
+  it "#review_number" do
+    expect(@venue_1.review_number).to eq @yv.review_count
+  end
+
+  it "#yurl" do
+    expect(@venue_1.yurl).to eq @yv.yelp_url
+  end
+
+  it "#yid" do
+    expect(@venue_1.y_id).to eq @yv.yelp_id
+  end
+end

@@ -1,0 +1,35 @@
+<div class="container">
+	<div class="page-header">
+		<i class="fa fa-tachometer fa-2x active" aria-hidden="true"></i>
+		<p><%= @passport.name %></p>
+	</div>
+	<div class="col-md-4 col-md-offset-4">
+
+	<table class="table table-hover table-striped solo-show ">
+			<thead class="thead-inverse">
+			<tr>
+				<th>
+				All of the Places
+			</th>
+			</tr>
+		</thead>
+		</tr>
+		<% @venues.each do |v| %>
+		<tr>
+			<td id="<%= v.y_id %>">
+				<%= v.name %>
+			</td>
+		</tr>
+		<% end %>
+	</table>
+	</div>
+</div>
+
+<script>
+ $(document).ready(function() {
+	 $("<%= @visits %>").addClass('visited-cell')
+	 $('table').on('click', 'td', function() {
+		 $(this).addClass('visited-cell')
+	 })
+ })
+</script>

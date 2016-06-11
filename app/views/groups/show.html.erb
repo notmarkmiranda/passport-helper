@@ -1,0 +1,42 @@
+<div class="container">
+	<div class="page-header">
+		<i class="fa fa-tachometer fa-2x active" aria-hidden="true"></i>
+		<p><%= @group.name %></p>
+		<span><%= link_to @group.passport.name, passport_path(@group.passport) %></span>
+
+	</div>
+
+	<table class="table table-bordered table-striped table-sm table-group">
+  <thead>
+    <tr>
+      <th>Venue</th>
+			<% @users.each do |user| %>
+				<th><%= user.name %></th>
+			<% end %>
+    </tr>
+  </thead>
+  <tbody>
+		<% @venues.each do |venue| %>
+		<tr>
+			<td>
+				<%= venue.name %>
+			</td>
+			<td></td>
+			<td></td>
+		</tr>
+		<% end %>
+    <!-- <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Larry</td>
+    </tr> -->
+  </tbody>
+</table>
+</div>

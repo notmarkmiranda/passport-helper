@@ -30,5 +30,11 @@ describe UsersController do
     expect(response).to render_template(:show)
   end
 
+end
 
+describe UsersController, "sad path" do
+  it "redirects to root path" do
+    get :show
+    expect(response).to redirect_to root_path
+  end
 end

@@ -112,3 +112,16 @@ def create_groups(num = 1)
                  passport_id: Passport.first.id)
   end
 end
+
+def create_yelp_venue(num = 1)
+  create_venues(1)
+  lv = Venue.last
+  vcount = Venue.count
+  num.times do
+    YelpVenue.create(venue_id: Random.new.rand((lv.id-vcount+1)..(lv.id)),
+                     yelp_id: "test-id",
+                     rating_url: "test-rating",
+                     yelp_url: "test-url",
+                     review_count: 5)
+  end
+end

@@ -28,10 +28,20 @@ describe GroupsController do
       get :new
       expect(response).to render_template("new")
     end
-    
+
     it "assigns group" do
       get :new
       expect(assigns(:group)).to be_a_new(Group)
     end
+  end
+
+  context "create" do
+
+    it "breaks when something is wrong" do
+      request.env["HTTP_REFERER"] = root_path
+      post :create, group: {passport_id: 1, user_id: 1}
+      expect(response).to redirect_to root_path
+    end
+
   end
 end

@@ -5,6 +5,8 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find_by(id: params[:id])
+    @venues = @group.passport.venues
+    @users = @group.users
   end
 
   def new
@@ -14,7 +16,7 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     if @group.save
-      flash[:success] = "#{group.name} Group Created!"
+      flash[:success] = "#{@group.name} Group Created!"
       redirect_to user_dashboard_path
     else
       flash[:danger] = @group.errors.full_messages.join(" ")

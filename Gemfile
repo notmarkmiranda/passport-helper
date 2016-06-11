@@ -17,6 +17,9 @@ gem 'omniauth-twitter'
 gem 'figaro'
 gem 'table_print'
 gem 'faker'
+gem 'responders', '~> 2.0'
+gem 'active_model_serializers', github: "rails-api/active_model_serializers"
+
 
 group :production do
   gem 'rails_12factor'

@@ -27,7 +27,7 @@
 				<div class="list-group-item profile-body">
 					<% @user.passports.each do |passport| %>
 					<div class="passport">
-						<%= link_to passport.name, passport_path(passport) %> - <%= button_to "Remove from My Account", user_passport_path(passport) , name: "add-to-account", method: :delete, data: { confirm: "REALLY?!?" } %>
+						<%= link_to passport.name, user_u_passport_path(user_id: current_user.id, id: passport.id) %> - <%= button_to "Remove from My Account", user_passport_path(passport) , name: "add-to-account", method: :delete, data: { confirm: "REALLY?!?" } %>
 					</div>
 					<% end %>
 				</div>
@@ -37,7 +37,7 @@
 				<div class="list-group">
 					<div class="list-group-item active">
 						<h4 class="list-group-item-heading profile-header">Groups<span class="label label-default label-pill pull-md-right"><%= @user.group_count %></span></h4>
-						<p><%= link_to "Create a New Group", new_group_path %></p>
+						<p><%= link_to "Create a New Group", new_group_path %> - <%= link_to "Find a Group", "#" %></p>
 					</div>
 				</div>
 				<div class="list-group-item profile-body">

@@ -2,6 +2,8 @@ class Venue < ActiveRecord::Base
   has_one :yelp_venue
   has_many :specials
   has_many :passports, through: :specials
+  has_many :visits
+  has_many :user_passports, through: :visits
   validates :address, presence: true
   validates :name, presence: true, uniqueness: { scope: :address }
   validates :neighborhood, presence: true
@@ -20,6 +22,10 @@ class Venue < ActiveRecord::Base
 
   def yurl
     yelp_venue.yelp_url
+  end
+
+  def y_id
+    yelp_venue.yelp_id
   end
 
 end
