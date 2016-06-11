@@ -3,7 +3,7 @@
 		<i class="fa fa-tachometer fa-2x active" aria-hidden="true"></i>
 		<p><%= @passport.name %></p>
 	</div>
-	<div class="col-md-4 col-md-offset-4">
+	<div class="col-md-6 col-md-offset-3">
 
 	<table class="table table-hover table-striped solo-show ">
 			<thead class="thead-inverse">
@@ -26,10 +26,38 @@
 </div>
 
 <script>
- $(document).ready(function() {
-	 $("<%= @visits %>").addClass('visited-cell')
-	 $('table').on('click', 'td', function() {
-		 $(this).addClass('visited-cell')
-	 })
- })
+$(document).ready(function() {
+	highlightVisits();
+
+	$('table').on('click', 'td', function() {
+		var yelpId = $(this).attr('id')
+		var visitData = { venue: { yelp_id: yelpId, up_id: <%= @up.id %> } }
+		var deleteData = { "_method":"delete", venue: { yelp_id: yelpId, up_id: <%= @up.id %> } }
+		if($(this).hasClass("visited-cell")) {
+			$.ajax({
+				method: "DELETE",
+				url: "/api/v1/visits/",
+				dataType: "JSON",
+				data: deleteData,
+				success: singleHighlights(yelpId)
+			})
+		}
+		else {
+			$.ajax({
+				method: "POST",
+				url: "/api/v1/visits.json",
+				dataType: "JSON",
+				data: visitData,
+				success: singleHighlights(yelpId)
+			})
+		}
+	})
+})
+
+function singleHighlights(yelpId){
+	$("#" + yelpId).toggleClass('visited-cell')
+}
+function highlightVisits(){
+	$("<%= @visits %>").addClass('visited-cell')
+}
 </script>

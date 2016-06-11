@@ -12,4 +12,8 @@ class YelpVenue < ActiveRecord::Base
     .pluck("yelp_id")
     .each { |tag| tag.prepend("#") }.join(", ")
   end
+
+  def self.venue_id_for_visit(yelp_id)
+    find_by(yelp_id: yelp_id).venue_id
+  end
 end
