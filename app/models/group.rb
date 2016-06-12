@@ -3,6 +3,7 @@ class Group < ActiveRecord::Base
   after_create :membership_association
 
   belongs_to :passport
+  has_many   :venues, through: :passport
   has_many   :memberships
   has_many   :users, through: :memberships
 

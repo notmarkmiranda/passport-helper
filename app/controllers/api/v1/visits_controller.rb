@@ -1,7 +1,7 @@
 module Api
   module V1
     class VisitsController < ApiController
-      before_action :require_user
+      # before_action :require_user
       respond_to :json
 
       def index
