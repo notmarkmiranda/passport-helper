@@ -6,24 +6,33 @@
 	</div>
 
 	<table class="table table-bordered table-striped table-sm table-group">
-  <thead>
-    <tr>
-      <th>Venue</th>
-			<% @users.each do |user| %>
-				<th><%= user.name %></th>
+		<thead class="thead-inverse">
+			<tr>
+				<th class="group-show-col-1">Venue</th>
+				<% @users.each do |user| %>
+					<th><%= user.name %></th>
+				<% end %>
+			</tr>
+		</thead>
+		<tbody>
+			<% @venues.each do |venue| %>
+				<tr>
+					<td><%= venue.name %></td>
+					<% @users.each do |user| %>
+						<td id="<%= "#{venue.yelp_venue.yelp_id}-#{user.id}" %>"></td>
+					<% end %>
+				</tr>
 			<% end %>
-    </tr>
-  </thead>
-  <tbody>
-		<% @venues.each do |venue| %>
-		<tr>
-			<td>
-				<%= venue.name %>
-			</td>
-			<td></td>
-			<td></td>
-		</tr>
-		<% end %>
-  </tbody>
-</table>
+		</tbody>
+	</table>
 </div>
+
+<script>
+$(document).ready(function() {
+	highlightVisits();
+})
+
+function highlightVisits(){
+	$("<%= @visits %>").addClass('visited-cell')
+}
+</script

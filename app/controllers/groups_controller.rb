@@ -7,7 +7,8 @@ class GroupsController < ApplicationController
     @group = Group.find_by(id: params[:id])
     @venues = @group.passport.venues
     @users = @group.users
-    @up = UserPassport.joins(:user).where(passport_id: @group.passport_id)
+    @up = UserPassport.where(passport_id: @group.passport_id)
+    @visits = YelpVenue.up_visits_group(@up)
   end
 
   def new

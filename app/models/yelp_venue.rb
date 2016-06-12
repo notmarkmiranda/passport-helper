@@ -13,6 +13,15 @@ class YelpVenue < ActiveRecord::Base
     .each { |tag| tag.prepend("#") }.join(", ")
   end
 
+  def self.up_visits_group(user_passport)
+    user_passport.map do |up|
+      joins(venue: [:visits])
+      .where(visits: { user_passport_id: up.id})
+      .pluck("yelp_id")
+      .each { |tag| tag.prepend("#") << "-#{up.user_id}" }.join(", ")
+    end.join(", ")
+  end
+
   def self.venue_id_for_visit(yelp_id)
     find_by(yelp_id: yelp_id).venue_id
   end
