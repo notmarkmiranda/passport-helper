@@ -15,10 +15,12 @@
         </li>
         <li class="list-group-item">
           <h4 class="list-group-item-heading">Do you have this passport?</h4>
-          <% if current_user %>
-          <p class="list-group-item-text"><%= button_to "Add to My Account", user_passports_path(passport_id: @passport.id, user_id: current_user.id), name: "add-to-account", class: "add-to-account" %></p>
+          <% if current_user && current_user.passports.include?(@passport) %>
+            <p class="list-group-item-text"><%= link_to "Your Progress", user_u_passport_path(user_id: current_user.id, id: params[:id])%></p>
+          <% elsif current_user %>
+            <p class="list-group-item-text"><%= button_to "Add to My Account", user_passports_path(passport_id: @passport.id, user_id: current_user.id), name: "add-to-account", class: "add-to-account" %></p>
           <% else %>
-          <p class="list-group-item-text"><%= link_to "Sign up or Sign In!", "#" , data: {toggle: "modal", target: "#loginModal"}%></p>
+            <p class="list-group-item-text"><%= link_to "Sign up or Sign In!", "#" , data: {toggle: "modal", target: "#loginModal"}%></p>
           <% end %>
         </li>
 

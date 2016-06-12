@@ -12,7 +12,7 @@ class UserPassportsController < ApplicationController
 
   def destroy
     passport = Passport.find(params[:id])
-    current_user.passports.delete(params[:id])
+    current_user.passports.destroy(params[:id])
     flash[:success] = "Removed #{passport.name} from your account!"
     redirect_to session[:redirect]
   end

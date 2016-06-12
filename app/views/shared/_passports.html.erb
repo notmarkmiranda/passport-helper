@@ -18,7 +18,9 @@
     </ul>
     <div class="card-block footer">
       <%= link_to "Deets", passport_path(p), class:"card-link" %>
-      <% if current_user %>
+      <% if current_user && current_user.passports.include?(p) %>
+      <%= link_to "Your Progress", user_u_passport_path(user_id: current_user.id, id: p.id), class:"card-link"%>
+      <% elsif current_user %>
       <%= button_to "Add to My Account", user_passports_path(passport_id: p.id, user_id: current_user.id), name: "add-to-account", class: "add-to-account" %>
       <% end %>
     </div>

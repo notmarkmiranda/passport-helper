@@ -34,8 +34,8 @@ feature "add passports to account" do
     it "logged-in user can't add passport twice" do
       visit "/passports"
       click_button "Add to My Account"
-      click_button "Add to My Account"
-      expect(page).to have_content("You've already added that passport to your account!")
+      expect(page).to_not have_button "Add to My Account"
+      # expect(page).to have_content("You've already added that passport to your account!")
       expect(current_path).to eq "/passports"
     end
 
