@@ -36,7 +36,7 @@
       <div class="list-group venue-cards">
         <li class="list-group-item venue venue-heading">
           <h5 class="list-group-item-heading venue-header"><%= v.name %></h5>
-          <p class="list-group-item-text"><%= link_to "#{v.website}", "http://#{v.website}", target: "_blank" %></p>
+          <p class="list-group-item-text venue-link"><%= link_to "#{v.website}", "http://#{v.website}", target: "_blank" %></p>
         </li>
         <li class="list-group-item venue">
           <p class="list-group-item-text"><%= v.neighborhood %></p>
@@ -50,7 +50,7 @@
         </li>
         <%= link_to v.yurl, target:"_blank" do %>
         <li class="list-group-item">
-          <%= image_tag "yelp-logo-xsmall" %>
+          <%= image_tag "yelp-logo-xsmall.png" %>
           <%= image_tag v.ratings %><br />
           <%= "#{v.review_number} Reviews" %>
         </li>

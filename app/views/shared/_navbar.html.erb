@@ -1,21 +1,25 @@
 <nav class="navbar navbar-fixed-top navbar-dark">
-    <div class="container">
-    <div class="navbar-header">
-      <%= link_to "Passport Helper", root_path, class: "navbar-brand" %>
-    </div>
-    <div class="pull-md-right" id="spy-nav">
-      <ul class="nav navbar-nav">
-        <li class="nav-item"><%= link_to "Passports", passports_path, class:"nav-link" %></li>
-        <li class="nav-item"><%= link_to "Groups", groups_path, class:"nav-link" %></li>
-        <li class="nav-item"><%= link_to "Something Else", "#", class:"nav-link" %></li>
-        <% if current_user %>
+  <button class="navbar-toggler hidden-md-up type="button" data-toggle="collapse" data-target="#responsiveCollapse">
+      ☰
+    </button>
+      <div class="container">
+      <div class="navbar-header hidden-sm-down">
+        <%= link_to "Passport Helper", root_path, class: "navbar-brand" %>
+      </div>
+      <div class="collapse navbar-toggleable-sm" id="responsiveCollapse"> <!-- class .navbar-toggleable-* -->
+      <div class="pull-md-right" id="spy-nav">
+        <ul class="nav navbar-nav">
+          <li class="nav-item"><%= link_to "Passports", passports_path, class:"nav-link" %></li>
+          <li class="nav-item"><%= link_to "Groups", groups_path, class:"nav-link" %></li>
+          <% if current_user %>
           <li class="nav-item"><%= link_to "Dashboard", user_dashboard_path, class:"nav-link" %></li>
           <li class="nav-item"><%= link_to "Log Out", logout_path, class:"nav-link" %></li>
         </ul>
         <% else %>
-          <li class="nav-item"><%= link_to "Login or Register", "#", class:"nav-link", data: {toggle: "modal", target: "#loginModal"} %></li>
+        <li class="nav-item"><%= link_to "Login or Register", "#", class:"nav-link", data: {toggle: "modal", target: "#loginModal"} %></li>
         <% end %>
-        </ul>
+      </ul>
     </div>
-    </div>
+  </div>
+</div>
 </nav>

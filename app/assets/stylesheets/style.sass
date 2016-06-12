@@ -19,6 +19,7 @@ $raleway: 'Raleway', sans-serif
   letter-spacing: 2px
   height: 100px
   padding-top: 25px
+  
 
 body
   background-color: $body-bg
@@ -155,12 +156,10 @@ body
 .venue-cards
   margin-top: 40px
 
-.list-group-item-text
+.list-group-item-text.venue-link
+  line-height: 1px
   a
-    font-size: 0.9em
-
-.list-group-item-heading.venue-heading
-  font-size: 1.5em
+    font-size: 0.5em
 
 .profile-header
   font-size: 2.5em
@@ -179,10 +178,12 @@ body
   padding: 4px
   font-size: 1.05em
 
-.venue-heading
+.list-group-item.venue-heading
   background-color: $background-color
   color: white
   height: 75px
+  font-size: 1.5em
+  padding-top: 15px
 
 .label
   font-weight: normal
