@@ -125,3 +125,17 @@ def create_yelp_venue(num = 1)
                      review_count: 5)
   end
 end
+
+def create_visits(num = 1)
+  create_venues(1)
+  v = Venue.first.id
+  create_users(1)
+  u = User.first.id
+  create_passports(1)
+  p = Passport.first.id
+  create_user_passports(1, u, p)
+  up = UserPassport.first.id
+  num.times do
+    Visit.create(venue_id: v, user_passport_id: up)
+  end
+end

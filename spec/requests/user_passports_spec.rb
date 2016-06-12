@@ -8,6 +8,7 @@ describe "user-passports controller" do
       create_passports(1)
       @passport = Passport.first
       create_user_passports(1, @user.id, @passport.id)
+      ApplicationController.any_instance.stubs(:current_user).returns(@user)
     end
 
     it "returns a passport that a user has" do
