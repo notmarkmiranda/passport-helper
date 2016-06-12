@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 
   def require_user
     unless current_user
-      flash[:danger] = "You gotta' log in first!"
+      flash[:danger] = "You can't do that until you get logged in!"
       redirect_to root_path
     end
   end

@@ -1,4 +1,5 @@
 class Users::PassportsController < ApplicationController
+  before_action :require_user
   def show
     @passport = Passport.find(params[:id])
     @venues = @passport.venues
