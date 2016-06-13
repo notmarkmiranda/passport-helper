@@ -3,9 +3,10 @@
 		<i class="fa fa-tachometer fa-2x active" aria-hidden="true"></i>
 		<p><%= @group.name %></p>
 		<span><%= link_to @group.passport.name, passport_path(@group.passport) %></span>
+		<br /><button type="button" class="btn btn-primary group-collapse">Collapse/Expand Group</button>
 	</div>
 
-	<table class="table table-bordered table-striped table-sm table-group">
+	<table id="group-show" class="table table-bordered table-sm table-group">
 		<thead class="thead-inverse">
 			<tr>
 				<th class="group-show-col-1">Venue</th>
@@ -30,9 +31,15 @@
 <script>
 $(document).ready(function() {
 	highlightVisits();
+
+	$('.group-collapse').click(function(){
+		$('td:contains("x")').parent().toggle();
+	})
+
 })
 
+
 function highlightVisits(){
-	$("<%= @visits %>").addClass('visited-cell')
+	$("<%= @visits %>").addClass('visited-cell').append('x')
 }
 </script
