@@ -1,13 +1,8 @@
 class UserPassportsController < ApplicationController
   def create
     up = UserPassport.new(user_passport_params)
-    if up.save
-      flash[:success] = "Added to Your Account!"
-      redirect_to session[:redirect]
-    else
-      flash[:danger] = "You've already added that passport to your account!"
-      redirect_to session[:redirect]
-    end
+    flash[:success] = "Added to Your Account!" if up.save
+    redirect_to session[:redirect]
   end
 
   def destroy
