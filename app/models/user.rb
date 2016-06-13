@@ -38,4 +38,8 @@ class User < ActiveRecord::Base
     update(incoming_params)
   end
 
+  def group_member?(group)
+    groups.include?(group)
+  end
+
 end

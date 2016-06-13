@@ -1,5 +1,4 @@
 <div class="container">
-  <% cache cache_key_for(Group, "count") do %>
   <% @groups.each do |g| %>
   <div class="card">
     <div class="card-block group">
@@ -12,8 +11,16 @@
         <p class="list-group-item-text">Established <%= Formatter.parse(g.created_at) %></p>
       </li>
     </ul>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <% if current_user.group_member?(g) %>
+          <%= link_to "Check Out Group Progress", group_path(g), class:"card-link"%>
+        <% else %>
+          <%= button_to "Join Group!", memberships_path(group_id: g.id, user_id: current_user.id), name: "add-to-account", class: "add-to-account" %>
+        <% end %>
+      </li>
+    </ul>
   </div>
 
-  <% end %>
   <% end %>
 </div>
