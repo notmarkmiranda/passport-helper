@@ -10,13 +10,13 @@ class Group < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
   validates :passport_id, presence: true
 
-  after_create :clear_cache
-  after_save :clear_cache
-  after_destroy :clear_cache
-
-  def clear_cache
-    Rails.cache.clear
-  end
+  # after_create :clear_cache
+  # after_save :clear_cache
+  # after_destroy :clear_cache
+  #
+  # def clear_cache
+  #   Rails.cache.clear
+  # end
 
 
   def membership_count

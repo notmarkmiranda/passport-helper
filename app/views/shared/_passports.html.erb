@@ -1,5 +1,4 @@
 <div class="container">
-  <% cache cache_key_for(Passport, "count") do %>
   <% passports.each do |p| %>
   <div class="card">
     <div class="card-block passport">
@@ -20,12 +19,11 @@
     <div class="card-block footer">
       <%= link_to "Deets", passport_path(p), class:"card-link" %>
       <% if current_user && current_user.passports.include?(p) %>
-      <%= link_to "Your Progress", user_u_passport_path(user_id: current_user.id, id: p.id), class:"card-link"%>
+        <%= link_to "Your Progress", user_u_passport_path(user_id: current_user.id, id: p.id), class:"card-link"%>
       <% elsif current_user %>
-      <%= button_to "Add to My Account", user_passports_path(passport_id: p.id, user_id: current_user.id), name: "add-to-account", class: "add-to-account" %>
+        <%= button_to "Add to My Account", user_passports_path(passport_id: p.id, user_id: current_user.id), name: "add-to-account", class: "add-to-account" %>
       <% end %>
     </div>
   </div>
-  <% end %>
   <% end %>
 </div>

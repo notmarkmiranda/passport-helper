@@ -12,8 +12,8 @@ class YelpVenue < ActiveRecord::Base
 
   def self.up_visits_group(user_passport)
     user_passport.map do |up|
-      joins_visits(up).each { |tag| tag.prepend("#") << "-#{up.user_id}" }.join(", ")
-    end.join(", ")
+      joins_visits(up).each { |tag| tag.prepend("#") << "-#{up.user_id}" }.compact
+    end.flatten.join(", ")
   end
 
   def self.venue_id_for_visit(yelp_id)
