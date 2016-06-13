@@ -1,4 +1,5 @@
 <div class="container">
+  <% cache cache_key_for(Passport, "count") do %>
   <% passports.each do |p| %>
   <div class="card">
     <div class="card-block passport">
@@ -25,5 +26,6 @@
       <% end %>
     </div>
   </div>
+  <% end %>
   <% end %>
 </div>

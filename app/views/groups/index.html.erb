@@ -1,4 +1,5 @@
 <div class="container">
+  <% cache cache_key_for(Group, "count") do %>
   <% @groups.each do |g| %>
   <div class="card">
     <div class="card-block group">
@@ -11,7 +12,8 @@
         <p class="list-group-item-text">Established <%= Formatter.parse(g.created_at) %></p>
       </li>
     </ul>
-</div>
+  </div>
 
+  <% end %>
   <% end %>
 </div>

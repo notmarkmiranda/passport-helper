@@ -3,7 +3,7 @@
 		<i class="fa fa-tachometer fa-2x active" aria-hidden="true"></i>
 		<p><%= @group.name %></p>
 		<span><%= link_to @group.passport.name, passport_path(@group.passport) %></span>
-		<br /><button type="button" class="btn btn-primary group-collapse">Collapse/Expand Group</button>
+		<br /><button type="button" class="btn btn-primary group-collapse">COLLAPSE/EXPAND GROUP</button>
 	</div>
 
 
@@ -45,11 +45,12 @@ $(document).ready(function() {
 	highlightVisits();
 
 	$('.group-collapse').click(function(){
-		$('td:contains("x")').parent().toggle();
+		$('td:contains("x")').parent().toggle(500)
+			// $(this).animate()
+		// });
 	})
 
 })
-
 
 function highlightVisits(){
 	$("<%= @visits %>").addClass('visited-cell').append('x')
