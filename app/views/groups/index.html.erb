@@ -2,7 +2,8 @@
   <div class="page-header">
     <i class="fa fa-user-plus fa-2x active" aria-hidden="true"></i>
     <p>Do you need some friends?</p>
-    <span>But don't be a weirdo stalker.</span>
+    <span>But don't be a weirdo stalker.</span><br />
+    <%= link_to "Create a New Group!", new_group_path %>
   </div>
   <% @groups.each do |g| %>
   <div class="card">

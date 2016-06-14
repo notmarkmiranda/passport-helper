@@ -36,5 +36,13 @@ describe MembershipsController do
       expect(@group.users.count).to eq 2
     end
 
+    it "can't join a group twice" do
+      expect(@group.users.count).to eq 1
+      post :create, {group_id: @group.id, user_id: @user_2.id}
+      expect(@group.users.count).to eq 2
+      post :create, {group_id: @group.id, user_id: @user_2.id}
+      expect(@group.users.count).to eq 2      
+    end
+
   end
 end
