@@ -7,7 +7,8 @@ task import_denver_fika: [ :environment ] do
                        start: Date.new(2016, 4, 1),
                        expiration: Date.new(2016, 10, 1),
                        url: "www.thepassportprogram.com/fika/",
-                       status: "active")
+                       status: "active",
+                       image_url: "http://www.colfaxanddowning.com/wp-content/uploads/2016/03/IMG_3127-1024x1024.jpg")
   puts "CREATED #{pp.name.upcase} !"
   csv = "./db/csv/2016DenverFika.csv"
   CSV.foreach(csv, { :row_sep => :auto, encoding:'iso-8859-1:utf-8', headers: true, header_converters: :symbol }) do |row|

@@ -60,7 +60,7 @@ describe User, "using email" do
 		expect(user.name).to be_nil
 		updated_params = { image_url: "https://case.edu/medicine/admissions/media/school-of-medicine/admissions/classprofile.png",
 		                   name: "Mark Miranda" }
-		user.finish_registration(updated_params)
+		user.update_profile(updated_params)
 		expect(user.image_url).to_not be_nil
 		expect(user.name).to_not be_nil
 	end

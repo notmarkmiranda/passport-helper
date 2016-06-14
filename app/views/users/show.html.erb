@@ -11,7 +11,8 @@
 	<div class="list-group-item profile-body">
 		<p>Name: <%= @user.name %><br />
 			E-Mail: <%= @user.email %></p>
-			<a href="#" class="add-btn">Edit Profile</a>
+			<%= link_to "Edit Profile", edit_user_path(@user), class:"add-btn" %>
+			<!-- <a href="#" class="add-btn">Edit Profile</a> -->
 		</div>
 		<hr />
 		<div class="row">

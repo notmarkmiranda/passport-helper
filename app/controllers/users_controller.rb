@@ -21,11 +21,16 @@ class UsersController < ApplicationController
     end
   end
 
-  # def update
-  #   @user = User.find(params[:id])
-  #   @user.finish_registration(user_params)
-  #   redirect_to user_dashboard_path
-  # end
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    @user.update_profile(user_params)
+    flash[:success] = "Yay!"
+    redirect_to user_dashboard_path
+  end
 
   private
 

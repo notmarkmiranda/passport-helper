@@ -7,7 +7,8 @@ task import_denver: [ :environment ] do
                        start: Date.new(2016, 5, 27),
                        expiration: Date.new(2016, 9, 5),
                        url: "www.thepassportprogram.com/denver",
-                       status: "active")
+                       status: "active",
+                       image_url: "http://images1.westword.com/imager/u/745x420/7088675/denverpassport_1_.jpg")
   puts "CREATED #{pp.name.upcase} !"
   csv = "./db/csv/2016DenverDrinks.csv"
   CSV.foreach(csv, { :row_sep => :auto, encoding:'iso-8859-1:utf-8', headers: true, header_converters: :symbol}) do |row|

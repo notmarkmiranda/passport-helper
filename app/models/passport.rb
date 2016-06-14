@@ -24,6 +24,14 @@ class Passport < ActiveRecord::Base
     where(status: "active")
   end
 
+  def passport_images(size)
+    if image_url
+      image_url
+    else
+      "http://placehold.it/#{size}"
+    end
+  end
+
   def self.inactive_passports
     where.not(status: "active")
   end

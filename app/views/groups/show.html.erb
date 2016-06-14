@@ -2,8 +2,12 @@
 	<div class="page-header">
 		<i class="fa fa-tachometer fa-2x active" aria-hidden="true"></i>
 		<p><%= @group.name %></p>
-		<span><%= link_to @group.passport.name, passport_path(@group.passport) %></span>
-		<br /><button type="button" class="btn btn-primary group-collapse">COLLAPSE/EXPAND GROUP</button>
+		<div><%= link_to @group.passport.name, passport_path(@group.passport) %></div>
+		<% if current_user && current_user.has_passport?(@group.passport) %>
+			<div><%= link_to "Your Progress", user_u_passport_path(user_id: current_user.id, id: @group.passport.id), class:"card-link"%></div>
+		<% end %>
+		<div><br />Click the button to filter <br />to group unvisited spots</div>
+		<button type="button" class="btn btn-primary group-collapse">FILTER VISITED VENUES</button>
 	</div>
 
 
@@ -51,6 +55,6 @@ $(document).ready(function() {
 })
 
 function highlightVisits(){
-	$("<%= @visits %>").addClass('visited-cell').append('x')
+	$("<%= @visits %>").addClass('visited-cell')
 }
 </script

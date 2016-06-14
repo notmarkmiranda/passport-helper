@@ -1,10 +1,17 @@
 <div class="container">
+  <div class="page-header">
+    <i class="fa fa-user-plus fa-2x active" aria-hidden="true"></i>
+    <p>Do you need some friends?</p>
+    <span>But don't be a weirdo stalker.</span>
+  </div>
   <% @groups.each do |g| %>
   <div class="card">
-    <div class="card-block group">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
       <h5 class="cart-title"><%= link_to g.name, group_path(g) %></h5>
       <p class="list-group-item-text muted-text"><%= g.passport.name %></p>
-    </div>
+    </li>
+    </ul>
     <ul class="list-group list-group-flush">
       <li class="list-group-item">
         <h6 class="list-group-item-heading"><%= "#{g.membership_count} Member".pluralize(g.membership_count) %> </h6>
@@ -13,10 +20,12 @@
     </ul>
     <ul class="list-group list-group-flush">
       <li class="list-group-item">
-        <% if current_user.group_member?(g) %>
+        <% if  current_user && current_user.group_member?(g) %>
           <%= link_to "Check Out Group Progress", group_path(g), class:"card-link"%>
-        <% else %>
+        <% elsif current_user %>
           <%= button_to "Join Group!", memberships_path(group_id: g.id, user_id: current_user.id), name: "add-to-account", class: "add-to-account" %>
+        <% else %>
+          <p class="list-group-item-text"><%= link_to "Sign up or Sign In!", "#" , data: {toggle: "modal", target: "#loginModal"}%></p>
         <% end %>
       </li>
     </ul>

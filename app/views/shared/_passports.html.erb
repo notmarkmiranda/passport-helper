@@ -5,7 +5,9 @@
       <h5 class="card-title"><%= link_to p.name, passport_path(p) %></h5>
       <h6 class="card-subtitle text-muted"><%= link_to "#{p.url}", "http://#{p.url}", target: "_blank" %></h6>
     </div>
-    <img class="card-img-top" src="http://placehold.it/348x180" alt="<%= p.name %>">
+    <div class="p-image">
+      <img class="card-img-top passport-index-image" src="<%= p.passport_images("348x180") %>" alt="<%= p.name %>" />
+    </div>
     <!-- paperclip needs to bring in url and specific szie -->
     <ul class="list-group list-group-flush">
       <li class="list-group-item">

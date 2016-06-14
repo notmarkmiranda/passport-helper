@@ -142,9 +142,15 @@ body
   text-transform: none
 
 .passport-show-left
+  width: 250px
+  height: 250px
+  overflow: hidden
+  border-radius: 4px
+  vertical-align: middle
   img
     width: 100%
     border-radius: 10px
+    // height: 100%
 
 
 .passport-show-venues
@@ -217,8 +223,17 @@ input[name="add-to-account"], a.add-btn
     border: 1px solid #d0d0d0
 
 .visited-cell
-  background-color: $primary-blue
+  background-image: asset-data-url('done.png')
+  background-repeat: no-repeat
+  background-size: cover
+  background-position: left center
+  // height: 100%
+  top: 0
+  z-index: -10
+  background-color: $secondary-blue
   color: $body-bg
+  text-shadow: 2px 2px 3px rgba(0,0,0,1)
+
 
 #group-show
   td
@@ -239,3 +254,19 @@ thead.thead-inverse
 
 .group-show-special
   color: $primary-yellow
+
+.p-image
+  width: 348px
+  height: 180px
+  overflow: hidden
+  border-radius: 4px
+
+.passport-index-image
+  width: 100%
+  // background-position: center center
+  // background-size: cover
+  // height: auto
+  // background-repeat: no-repeat
+
+
+  // overflow: hidden

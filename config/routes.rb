@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 	root "pages#index"
 
-	resources :users, only: [:create, :update] do
+	resources :users, only: [:create, :update, :edit] do
 		scope module: "users" do
 			resources :passports, only: [:show], as: "u_passport"
 		end

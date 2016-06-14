@@ -32,7 +32,7 @@ describe MembershipsController do
 
     it "can join a group" do
       expect(@group.users.count).to eq 1
-      post :create, {membership: {group_id: @group.id, user_id: @user_2.id}}
+      post :create, {group_id: @group.id, user_id: @user_2.id}
       expect(@group.users.count).to eq 2
     end
 

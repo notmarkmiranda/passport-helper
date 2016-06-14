@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row passport-show">
     <div class="col-md-3 passport-show-left">
-      <img class="something" src="http://placehold.it/250x250", alt="<%= @passport.name %>" />
+      <img class="something" src="<%= @passport.passport_images("250x250") %>", alt="<%= @passport.name %>" />
     </div>
     <div class="col-md-9 passport-show-right">
       <div class="list-group">

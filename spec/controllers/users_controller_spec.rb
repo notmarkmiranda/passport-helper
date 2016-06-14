@@ -18,16 +18,26 @@ describe UsersController do
     expect(response).to redirect_to root_path
   end
 
-  xit "users_controller#update" do
-    user = User.create(email: "markmiranda51@gmail.com", password: "password", provider: "email")
+  it "users_controller#update" do
+    user = User.create(email: "markmiranda51@gmail.com", password: "password", name: "Mark Miranda", provider: "email")
+
+    expect(user.name).to eq "Mark Miranda"
     session[:user_id] = user.id
-    patch :update, id: user.id, user: { name: "Mark Miranda" }
+    patch :update, {id: user.id, user: { name: "NEW NAME" }}
     expect(response).to redirect_to(user_dashboard_path)
+    user = User.last
+    expect(user.name).to eq "NEW NAME"
   end
 
   it "users_controller#show" do
     get :show
     expect(response).to render_template(:show)
+  end
+
+  it "users_controller#edit" do
+    user = User.first
+    get :edit, id: user.id
+    expect(response).to render_template(:edit)
   end
 
 end

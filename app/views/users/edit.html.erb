@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="page-header">
+    <i class="fa fa-unlock fa-2x active" aria-hidden="true"></i>
+    <p>Edit Profile Stuff:</p>
+  </div>
+  <div class=" col-md-4 col-md-offset-4">
+    <%= form_for @user do |f| %>
+      <%= f.label :name, "Name", class: "new-group-passport-form" %>
+      <%= f.text_field :name, class:"form-control" %>
+      <%= f.label :email, "E-Mail", class: "new-group-passport-form" %>
+      <%= f.text_field :email, class:"form-control" %>
+      <% if @user.provider == "email" %>
+        <%= f.label :password, class: "new-group-passport-form" %>
+        <%= f.password_field :password, class: "form-control" %>
+      <% end %>
+      <%= f.submit "Update Profile!", class:"btn btn-primary new-group-passport-form" %>
+    <% end %>
+  </div>
+</div>
