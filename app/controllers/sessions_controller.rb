@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
       @user = User.from_omniauth(request.env['omniauth.auth'])
       session[:user_id] = @user.id
       flash[:success] = "Welcome, #{@user.name}!"
-      redirect_to root_path
+      redirect_to user_dashboard_path
     rescue
       flash.now[:warning] = "That didn't work, try again."
       redirect_to :back
@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
       flash[:success] = "Welcome #{user.name}!"
-      redirect_to :back
+      redirect_to user_dashboard_path
     else
       flash[:warning] = "That didn't work, try again."
       redirect_to :back

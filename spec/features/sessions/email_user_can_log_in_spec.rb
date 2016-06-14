@@ -13,7 +13,7 @@ feature "email user" do
     fill_in "session[email]", with: @user.email
     fill_in "session[password]", with: "password"
     click_on "Let's Go!"
-    expect(current_path).to eq root_path
+    expect(current_path).to eq user_dashboard_path
     expect(page).to have_content "Welcome #{@user.name}!"
   end
 
