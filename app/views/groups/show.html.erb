@@ -7,7 +7,9 @@
 			<div><%= link_to "Your Progress", user_u_passport_path(user_id: current_user.id, id: @group.passport.id), class:"card-link"%></div>
 		<% end %>
 		<div><br />Click the button to filter <br />to group unvisited spots</div>
+
 		<button type="button" class="btn btn-primary group-collapse">FILTER VISITED VENUES</button>
+
 	</div>
 
 
@@ -25,7 +27,7 @@
 			<tr>
 				<td>
 					<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#special-<%= index %>" aria-expanded="false" aria-controls="collapseTwo">
-						<b><%= venue.name %></b><br />
+						<b><%= venue.name %></b> - Specials<br />
 					</a>
 					<div id="special-<%= index %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
 						<%= venue.address %><br />
