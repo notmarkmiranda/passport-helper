@@ -4,7 +4,7 @@ class Group < ActiveRecord::Base
 
   belongs_to :passport
   has_many   :venues, through: :passport
-  has_many   :memberships
+  has_many   :memberships,  dependent: :destroy
   has_many   :users, through: :memberships
 
   validates :name, presence: true, uniqueness: true
