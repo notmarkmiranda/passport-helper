@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
   validates :email, format: { with: VALID_EMAIL_REGEX }
   validates :provider, presence: true
 
+  enum role: ["default", "admin"]
+
   def self.from_omniauth(auth_hash)
     user = find_or_create_by(email: auth_hash['info']['email'], provider: auth_hash['provider'])
     user.name = auth_hash['info']['name']

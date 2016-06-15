@@ -24,9 +24,10 @@ Rails.application.routes.draw do
 	get  "/auth/facebook/callback", to: "sessions#create"
 	post "/auth/facebook/callback", to: "sessions#create"
 	get  "/auth/facebook", as: "facebook_login"
-	get  "/auth/failure",  to: redirect("/")
-	get  "/login",  			 to: "sessions#new", as: "login"
-	post "/login",  			 to: "sessions#create_from_email"
-	get  "/logout", 			 to: "sessions#destroy"
-
+	get  "/auth/failure",    to: redirect("/")
+	get  "/login",  			   to: "sessions#new", as: "login"
+	post "/login",  			   to: "sessions#create_from_email"
+	get  "/logout", 			   to: "sessions#destroy"
+	get  "/admin/dashboard", to: "admin#show", as: "admin_dashboard"
+	get  "/errors/404",      to: "errors#show", as: "errors_404"
 end

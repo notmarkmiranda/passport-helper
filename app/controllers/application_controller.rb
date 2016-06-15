@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   private
 
 
-  helper_method :current_user, :set_redirect
+  helper_method :current_user, :set_redirect, :current_admin?
   def current_user
     @current_user ||= User.find_by(id: session[:user_id])
   end
@@ -20,5 +20,13 @@ class ApplicationController < ActionController::Base
 
   def set_redirect
     session[:redirect] = request.referer
+  end
+
+  def current_admin?
+    current_user && current_user.admin?
+  end
+
+  def require_admin
+    redirect_to errors_404_path unless current_admin?
   end
 end

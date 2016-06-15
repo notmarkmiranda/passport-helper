@@ -1,0 +1,64 @@
+<div class="container page-header">
+  <i class="fa fa-futbol-o fa-2x active" aria-hidden="true"></i>
+  <p>Admin Dashboard</p>
+
+<div class="row">
+
+  <div class="card col-md-4 col-centered">
+    <div class="card-block passport">
+      <i class="fa fa-users fa-2x users" aria-hidden="true"></i>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <h5 class="card-title">
+          <%= "#{@users.count} Total User".pluralize(@users.count) %>
+        </h5>
+        <h6 class="card-subtitle text-muted">
+          have a total of<br />
+        </h6>
+        <h5 class="card-title">
+          <%= "#{@ups.count} Passport".pluralize(@ups.count) %>
+        </h5>
+      </li>
+    </ul>
+  </div>
+
+  <div class="card col-md-4 col-centered">
+    <div class="card-block passport">
+      <i class="fa fa-shopping-bag fa-2x visits" aria-hidden="true"></i>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <h5 class="card-title">
+          <%= "#{@visits.count} Visit".pluralize(@visits.count) %>
+        </h5>
+        <h6 class="card-subtitle text-muted">
+          over<br />
+        </h6>
+        <h5 class="card-title">
+          <%= "#{@venues.count} Venue".pluralize(@venues.count) %>
+        </h5>
+      </li>
+    </ul>
+  </div>
+
+  <div class="card col-md-4 col-centered">
+    <div class="card-block passport">
+      <i class="fa fa-keyboard-o fa-2x groups" aria-hidden="true"></i>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <h5 class="card-title">
+          <%= "#{@groups.count} Group".pluralize(@groups.count) %>
+        </h5>
+        <h6 class="card-subtitle text-muted">
+          and<br />
+        </h6>
+        <h5 class="card-title">
+          <%= "#{@passports.count} Passport".pluralize(@passports.count) %>
+        </h5>
+      </li>
+    </ul>
+  </div>
+</div>
+</div>

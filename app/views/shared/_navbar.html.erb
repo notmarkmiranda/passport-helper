@@ -11,15 +11,18 @@
         <ul class="nav navbar-nav">
           <li class="nav-item"><%= link_to "Passports", passports_path, class:"nav-link" %></li>
           <li class="nav-item"><%= link_to "Groups", groups_path, class:"nav-link" %></li>
+          <% if current_admin? %>
+          <li class="nav-item"><%= link_to "Admin", admin_dashboard_path, class:"nav-link" %></li>
+          <% end %>
           <% if current_user %>
           <li class="nav-item"><%= link_to "Dashboard", user_dashboard_path, class:"nav-link" %></li>
           <li class="nav-item"><%= link_to "Log Out", logout_path, class:"nav-link" %></li>
         </ul>
-        <% else %>
+          <% else %>
         <li class="nav-item"><%= link_to "Login or Register", "#", class:"nav-link", data: {toggle: "modal", target: "#loginModal"} %></li>
-        <% end %>
-      </ul>
+          <% end %>
+        </ul>
+      </div>
     </div>
   </div>
-</div>
 </nav>
