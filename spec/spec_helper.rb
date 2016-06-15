@@ -29,15 +29,6 @@ auth_hash = OpenStruct.new(ah)
 OmniAuth.config.test_mode = true
 OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new(auth_hash)
 
-def mock_auth_hash
-  OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new({
-    "provider" => "facebook",
-    "info" => {"name" => "Mark Miranda",
-      "image" => "http://thesocialmediamonthly.com/wp-content/uploads/2015/08/photo.png",
-      "urls" => "http://www.facebook.com/markmiranda51"}
-      })
-end
-
 RSpec.configure do |config|
 
   config.before(:suite) do

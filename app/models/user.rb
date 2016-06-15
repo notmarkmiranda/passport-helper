@@ -47,4 +47,8 @@ class User < ActiveRecord::Base
     passports.include?(passport)
   end
 
+  def self.average_passports
+    (UserPassport.all.count.to_f / User.all.count).round(2)
+  end
+
 end

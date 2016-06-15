@@ -1,0 +1,36 @@
+  <div class="container page-header">
+  <i class="fa fa-fire fa-2x users" aria-hidden="true"></i>
+  <p>Users Deets</p>
+  <div class="col-md-8 col-md-offset-2">
+	<table class="table table-hover table-striped solo-show">
+			<thead class="thead-inverse">
+			<tr>
+				<th>
+				Info
+			</th>
+				<th>
+				# of Passports
+			</th>
+				<th>
+				Member Since
+			</th>
+			</tr>
+		</thead>
+		</tr>
+		<% @users.each do |u| %>
+		<tr>
+			<td id="<%= u.id %>">
+        <%= u.name %><br />
+        <%= u.email %>
+			</td>
+      <td>
+        <%= "#{u.passport_count} Passport".pluralize(u.passport_count) %>
+      </td>
+      <td>
+        <%= Formatter.parse(u.created_at) %>
+      </td>
+		</tr>
+		<% end %>
+	</table>
+	</div>
+</div>

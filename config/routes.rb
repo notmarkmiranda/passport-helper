@@ -11,6 +11,10 @@ Rails.application.routes.draw do
 	resources :groups, only: [:index, :show, :new, :create]
 	resources :memberships, only: [:destroy, :create]
 
+	namespace :admin do
+		resources :users, only: [:index]
+	end
+
 	namespace :api, defaults: {format: :json} do
 		namespace :v1 do
 			delete "/visits", to: "visits#destroy"

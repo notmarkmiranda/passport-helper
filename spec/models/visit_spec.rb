@@ -18,4 +18,9 @@ describe Visit do
     expect(a.venue_id).to eq @venue
     expect(a.user_passport_id).to eq @up
   end
+
+  it "#average_visits" do
+    create_venues(2)
+    expect(Visit.average_visits).to eq 0.33
+  end
 end

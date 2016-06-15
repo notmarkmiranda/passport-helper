@@ -6,7 +6,6 @@ feature "facebook user logs in" do
   end
 
   scenario "with valid credentials" do
-    # request.env["HTTP_REFERER"] = root_path
     visit facebook_login_path
     expect(page).to have_content "Welcome, Mark Miranda!"
   end
