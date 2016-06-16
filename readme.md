@@ -11,6 +11,8 @@ bundle
 rake db:create db:migrate all db:seed
 ```
 
+![alt text](splash.png)
+
 Live Version: http://passport-helper.herokuapp.com
 
 The seed file will create 10 empty groups. There is admin functionality to be able to see sitewide stats.
