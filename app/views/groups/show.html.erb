@@ -18,7 +18,7 @@
 			<tr>
 				<th class="group-show-col-1">Venue</th>
 				<% @users.each do |user| %>
-				<th><%= user.name %></th>
+				<th><%= user.truncated_name %></th>
 				<% end %>
 			</tr>
 		</thead>

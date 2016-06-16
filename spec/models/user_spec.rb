@@ -135,3 +135,15 @@ describe User, "#average_passports" do
 		expect(User.average_passports).to eq 1.5
 	end
 end
+
+describe User, "#truncated_name" do
+	before do
+		@user1 = User.create(provider: "email", email: "markmiranda51@gmail.com", name: "Mark Miranda")
+		@user2 = User.create(provider: "email", email: "markmiranda51@gmail.com", name: "Mark")
+	end
+
+	it "returns first name and last initial" do
+		expect(@user1.truncated_name).to eq "Mark M"
+		expect(@user2.truncated_name).to eq "Mark"
+	end
+end

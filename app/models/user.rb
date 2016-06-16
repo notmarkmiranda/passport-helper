@@ -47,6 +47,20 @@ class User < ActiveRecord::Base
     passports.include?(passport)
   end
 
+  def truncated_name
+    new_name = []
+    parts = name.split
+    new_name << parts.shift
+    if parts.empty?
+      return new_name.first
+    else
+      parts.each do |n|
+        new_name << n[0]
+      end
+    end
+    new_name.join(" ")
+  end
+
   def self.average_passports
     (UserPassport.all.count.to_f / User.all.count).round(2)
   end
