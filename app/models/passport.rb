@@ -12,14 +12,6 @@ class Passport < ActiveRecord::Base
   validates :expiration, presence: true
   validates :status, presence: true
 
-  # after_create :clear_cache
-  # after_save :clear_cache
-  # after_destroy :clear_cache
-  #
-  # def clear_cache
-  #   Rails.cache.clear
-  # end
-
   def self.active_passports
     where(status: "active")
   end

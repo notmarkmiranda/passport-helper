@@ -6,8 +6,11 @@ describe Venue, "validations" do
 
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:address) }
-  it { should validate_uniqueness_of(:name).scoped_to(:address)}
-  it { should validate_presence_of(:neighborhood) }
+  it do
+    should validate_uniqueness_of(:name).scoped_to(:address)
+      .with_message("should have one per city")
+  end
+  # it { should validate_presence_of(:neighborhood) }
 end
 
 describe Venue, "can return the names of a venue's passport specials" do

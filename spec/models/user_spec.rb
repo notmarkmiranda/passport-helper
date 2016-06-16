@@ -84,3 +84,54 @@ describe User, "#passport_count" do
 		end
 
 end
+
+describe User, "#group_member?" do
+	before do
+		create_groups(2)
+		create_users(1)
+		@group = Group.first
+		@group2 = Group.last
+		@user = User.first
+		Membership.create(group_id: @group.id, user_id: @user.id)
+	end
+
+	it "returns true/false about a users group" do
+		expect(@user.group_member?(@group)).to eq true
+		expect(@user.group_member?(@group2)).to eq false
+	end
+
+end
+
+describe User, "#has_passport?" do
+	before do
+		create_users(1)
+		create_passports(2)
+		@user = User.first
+		@p1 = Passport.first
+		@p2 = Passport.last
+		create_user_passports(1, @user.id, @p1.id)
+	end
+
+	it "returns true/false abouta users passport" do
+		expect(@user.has_passport?(@p1)).to eq true
+		expect(@user.has_passport?(@p2)).to eq false
+	end
+end
+
+describe User, "#average_passports" do
+	before do
+		create_users(2)
+		create_passports(2)
+		@u1 = User.first
+		@u2 = User.last
+		@p1 = Passport.first
+		@p2 = Passport.last
+		create_user_passports(1, @u1.id, @p1.id)
+		create_user_passports(1, @u1.id, @p2.id)
+		create_user_passports(1, @u2.id, @p1.id)
+	end
+
+	it "returns the average number of passports per user" do
+		expect(User.average_passports).to eq 1.5
+	end
+end

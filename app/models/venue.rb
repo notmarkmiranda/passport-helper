@@ -5,8 +5,9 @@ class Venue < ActiveRecord::Base
   has_many :visits
   has_many :user_passports, through: :visits
   validates :address, presence: true
-  validates :name, presence: true, uniqueness: { scope: :address }
-  validates :neighborhood, presence: true
+  validates :name, presence: true
+  validates :name, uniqueness: { scope: :address,
+    message: "should have one per city"}
 
   def passport_specials(passport)
     specials.find_by(passport_id: passport.id).name

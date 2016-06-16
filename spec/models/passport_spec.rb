@@ -13,3 +13,16 @@ describe Passport, 'validations' do
   it { should validate_presence_of(:expiration) }
   it { should validate_presence_of(:status) }
 end
+
+describe Passport, '#passport_images' do
+  before do
+    create_passports(1)
+
+  end
+
+  it "returns an image_url" do
+    p = Passport.last
+    p.update(image_url: "thing")
+    expect(p.passport_images("250")).to eq "thing"
+  end
+end

@@ -4,5 +4,6 @@ class Special < ActiveRecord::Base
 
   validates :name, presence: true
   validates :venue_id, presence: true
-  validates :passport_id, presence: true, uniqueness: { scope: [:venue_id] }
+  validates :passport_id, presence: true
+  validates :passport_id, uniqueness: { scope: :venue_id }
 end
