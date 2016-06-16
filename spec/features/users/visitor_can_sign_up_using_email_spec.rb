@@ -13,7 +13,7 @@ feature "visitor using e-mail" do
     fill_in "user[name]", with: "Mark Miranda"
     click_button "Create New Account!"
     expect(page).to have_content "Thanks for signing up!"
-    expect(current_path).to eq root_path
+    expect(current_path).to eq user_dashboard_path
   end
 
   scenario "cannot sign up while missing password" do

@@ -2,7 +2,6 @@ require 'rails_helper'
 
 describe UsersController do
   before do
-    request.env["HTTP_REFERER"] = root_path
     create_users(1)
     user = User.first
     ApplicationController.any_instance.stubs(:current_user).returns(user)
@@ -15,7 +14,7 @@ describe UsersController do
     }.to change(User, :count).by(1)
     expect(session[:user_id]).to_not be_nil
     expect(flash[:success]).to be_present
-    expect(response).to redirect_to root_path
+    expect(response).to redirect_to user_dashboard_path
   end
 
   it "users_controller#update" do
