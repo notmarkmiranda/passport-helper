@@ -7,7 +7,7 @@ feature "visitor using e-mail" do
 
   scenario "can sign up with all required credentials" do
     visit "/"
-    click_link "Login or Register"
+    first(:link, "Login or Register").click
     fill_in "user[email]", with: "markmiranda51@gmail.com"
     fill_in "user[password]", with: "password"
     fill_in "user[name]", with: "Mark Miranda"
@@ -18,7 +18,7 @@ feature "visitor using e-mail" do
 
   scenario "cannot sign up while missing password" do
     visit "/"
-    click_link "Login or Register"
+    first(:link, "Login or Register").click
     fill_in "user[email]", with: "markmiranda51@gmail.com"
     click_button "Create New Account!"
     expect(current_path).to eq root_path
@@ -27,7 +27,7 @@ feature "visitor using e-mail" do
 
   scenario "cannot sign up while missing email" do
     visit "/"
-    click_link "Login or Register"
+    first(:link, "Login or Register").click
     fill_in "user[password]", with: "password"
     click_button "Create New Account!"
     expect(current_path).to eq root_path

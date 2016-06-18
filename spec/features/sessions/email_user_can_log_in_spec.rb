@@ -9,7 +9,7 @@ feature "email user" do
 
   scenario "can log in with valid credentials" do
     visit "/"
-    click_link "Login or Register"
+    first(:link, "Login or Register").click
     fill_in "session[email]", with: @user.email
     fill_in "session[password]", with: "password"
     click_on "Let's Go!"
@@ -19,7 +19,7 @@ feature "email user" do
 
   scenario "cannot log in with invalid password" do
     visit "/"
-    click_link "Login or Register"
+    first(:link, "Login or Register").click
     fill_in "session[email]", with: @user.email
     fill_in "session[password]", with: "passwordz"
     click_button "Let's Go!"
@@ -29,7 +29,7 @@ feature "email user" do
 
   scenario "cannot log in with invalid email" do
     visit "/"
-    click_link "Login or Register"
+    first(:link, "Login or Register").click
     fill_in "session[email]", with: "a@b.com"
     fill_in "session[password]", with: "password"
     click_button "Let's Go!"

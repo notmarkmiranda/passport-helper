@@ -24,6 +24,7 @@ class User < ActiveRecord::Base
     user.uid = auth_hash['uid']
     user.password = SecureRandom.hex(9)
     user.save!
+    
     user
   end
 
