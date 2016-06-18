@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160614224059) do
+ActiveRecord::Schema.define(version: 20160618203855) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,10 @@ ActiveRecord::Schema.define(version: 20160614224059) do
   add_index "memberships", ["group_id"], name: "index_memberships_on_group_id", using: :btree
   add_index "memberships", ["user_id"], name: "index_memberships_on_user_id", using: :btree
 
+  create_table "notifications", force: :cascade do |t|
+    t.string "message"
+  end
+
   create_table "passports", force: :cascade do |t|
     t.string   "name"
     t.date     "start"
@@ -59,6 +63,14 @@ ActiveRecord::Schema.define(version: 20160614224059) do
 
   add_index "specials", ["passport_id"], name: "index_specials_on_passport_id", using: :btree
   add_index "specials", ["venue_id"], name: "index_specials_on_venue_id", using: :btree
+
+  create_table "user_notifications", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "notification_id"
+  end
+
+  add_index "user_notifications", ["notification_id"], name: "index_user_notifications_on_notification_id", using: :btree
+  add_index "user_notifications", ["user_id"], name: "index_user_notifications_on_user_id", using: :btree
 
   create_table "user_passports", force: :cascade do |t|
     t.integer  "user_id"
@@ -120,6 +132,8 @@ ActiveRecord::Schema.define(version: 20160614224059) do
   add_foreign_key "memberships", "users"
   add_foreign_key "specials", "passports"
   add_foreign_key "specials", "venues"
+  add_foreign_key "user_notifications", "notifications"
+  add_foreign_key "user_notifications", "users"
   add_foreign_key "user_passports", "passports"
   add_foreign_key "user_passports", "users"
   add_foreign_key "visits", "user_passports"

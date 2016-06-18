@@ -11,7 +11,10 @@ describe User, "validations" do
 	it { should have_many(:passports).through(:user_passports)}
 
 	it { should have_many(:memberships) }
-	it { should have_many(:groups).through(:memberships)}
+	it { should have_many(:groups).through(:memberships) }
+
+	it { should have_many(:user_notifications) }
+	it { should have_many(:notifications).through(:user_notifications) }
 end
 
 describe User, "using omniauth" do
