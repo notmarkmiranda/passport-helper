@@ -2,6 +2,7 @@ class MembershipsController < ApplicationController
   def create
     @membership = Membership.new(membership_params)
     if @membership.save
+      UserPassport.membership_created(membership_params)
       flash[:success] = "Yay!"
       redirect_to :back
     else

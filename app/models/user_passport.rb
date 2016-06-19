@@ -9,4 +9,8 @@ class UserPassport < ActiveRecord::Base
   def self.lookup(user, passport)
     find_by(user_id: user.id, passport_id: passport.id).id
   end
+
+  def self.membership_created(params)
+    create(user_id: params[:user_id], passport_id: Group.find(params[:group_id]).passport.id)
+  end
 end
