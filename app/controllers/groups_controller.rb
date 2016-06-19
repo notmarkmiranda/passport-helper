@@ -3,7 +3,7 @@ class GroupsController < ApplicationController
     @groups = Group.all
   end
 
-def show
+  def show
     @group = Group.find_by(id: params[:id])
     @venues = @group.passport.venues
     @users = @group.users
@@ -18,6 +18,7 @@ def show
   def create
     @group = Group.new(group_params)
     if @group.save
+      UserPassport.group_created(group_params)
       flash[:success] = "#{@group.name} Group Created!"
       redirect_to user_dashboard_path
     else

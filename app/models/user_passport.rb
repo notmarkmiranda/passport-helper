@@ -13,4 +13,8 @@ class UserPassport < ActiveRecord::Base
   def self.membership_created(params)
     create(user_id: params[:user_id], passport_id: Group.find(params[:group_id]).passport.id)
   end
+
+  def self.group_created(params)
+    create(user_id: params[:user_id], passport_id: params[:passport_id])
+  end
 end
