@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
   has_many :user_passports
   has_many :passports, through: :user_passports
 
+  has_many :user_notifications
+  has_many :notifications, through: :user_notifications
+
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, uniqueness: true
   validates :email, format: { with: VALID_EMAIL_REGEX }
@@ -24,6 +27,7 @@ class User < ActiveRecord::Base
     user.uid = auth_hash['uid']
     user.password = SecureRandom.hex(9)
     user.save!
+
     user
   end
 

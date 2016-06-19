@@ -27,7 +27,8 @@ describe MembershipsController do
       @user_2 = User.last
       create_groups(1)
       @group = Group.first
-      @m = @user.memberships.create(group_id: @group.id)
+      @passport = Passport.first
+      post :create, {group_id: @group.id, user_id: @user.id}
     end
 
     it "can join a group" do
@@ -41,7 +42,11 @@ describe MembershipsController do
       post :create, {group_id: @group.id, user_id: @user_2.id}
       expect(@group.users.count).to eq 2
       post :create, {group_id: @group.id, user_id: @user_2.id}
-      expect(@group.users.count).to eq 2      
+      expect(@group.users.count).to eq 2
+    end
+
+    it "adds a user passport if user doesnt have the groups passport" do
+      expect(@user.passports.first.id).to eq @passport.id
     end
 
   end

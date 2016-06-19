@@ -1,9 +1,9 @@
 class GroupsController < ApplicationController
   def index
-    @groups = Group.where.not(id: [1,2])
+    @groups = Group.all
   end
 
-  def show
+def show
     @group = Group.find_by(id: params[:id])
     @venues = @group.passport.venues
     @users = @group.users

@@ -9,7 +9,7 @@ feature "groups index" do
 
   it "visitor goes to index page from root" do
     visit "/"
-    click_link "Groups"
+    first(:link, "Groups").click
     expect(page).to have_content(@group1.name)
     expect(page).to have_content(@group2.name)
   end

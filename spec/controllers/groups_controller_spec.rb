@@ -3,7 +3,7 @@ require 'rails_helper'
 describe GroupsController do
   context "index" do
     it "assigns groups" do
-      groups = Group.where.not(id: [1,2])
+      groups = Group.all
       get :index
       expect(assigns(:groups)).to eq(groups)
     end
