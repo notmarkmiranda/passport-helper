@@ -4,4 +4,6 @@ class Membership < ActiveRecord::Base
 
   validates :user_id, uniqueness: { scope: :group_id,
     message: "You're already a part of that group!" }
+
+  enum role: ["pending", "active", "passive"]
 end
